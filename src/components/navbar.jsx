@@ -12,8 +12,8 @@ class NavBar extends React.Component {
         <Navbar bg="light" variant="light" expand="lg" sticky="top">
           <Navbar.Brand>Mattia De Vivo</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+            <Nav className="mr-lg-0">
               <NavDropdown title="CV" id="basic-nav-dropdown">
                 <NavDropdown.Item href="https://drive.google.com/open?id=1lB2Mme8UMBar_59kueyJXct0OisLC9xX"
                       target="_blank">Italian</NavDropdown.Item>

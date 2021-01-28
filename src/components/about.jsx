@@ -1,24 +1,29 @@
 import React, { Component } from "react";
-import { Container, Image, Row, Col, Jumbotron } from "react-bootstrap";
+import { Container, Row, Col, Jumbotron } from "react-bootstrap";
+import Img from "gatsby-image";
 
 class AboutSection extends Component {
   render() {
     return (
       <React.Fragment>
         <Container>
-          <div style={{ textAlign: "center" }}>
-            <Image
-              src={this.props.image.fluid.src}
-              width={300}
-              height={300}
-              fluid
-              style={{
-                marginTop: "10px",
-                borderStyle: "solid",
-                borderWidth: "1px",
-              }}
-              alt="Photo about Mattia De Vivo"
-            />
+            <Row >
+              <Col xs={12}>
+                <Img className="mx-auto d-block"
+                  fluid={this.props.image.fluid}
+                  key={this.props.image.id}
+                  alt={this.props.image.title}
+                  style={{
+                    maxWidth: "200px",
+                    maxHeight: "300px",
+                    marginTop: "10px",
+                    borderStyle: "solid",
+                    borderWidth: "1px",
+                  }}
+                />
+              </Col>
+            </Row>
+
             <Row className="justify-content-md-center">
               <Col className="col-md-auto">
                 <span
@@ -32,7 +37,6 @@ class AboutSection extends Component {
                 </span>
               </Col>
             </Row>
-          </div>
         </Container>
         <Jumbotron
           style={{ marginLeft: "10%", marginRight: "10%", marginBottom: "8px" }}

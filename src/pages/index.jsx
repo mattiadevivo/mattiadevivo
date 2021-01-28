@@ -63,62 +63,65 @@ const IndexPage = ({ data }) => {
 
 // Single query for all the data, for data formatting see Moment.js
 export const eduQuery = graphql`
-  {
-    allContentfulEducation(sort: { fields: [startDate, endDate], order: DESC }) {
-      edges {
-        node {
-          id
-          description {
-            raw
-          }
-          startDate(formatString: "MMMM YYYY")
-          endDate(formatString: "MMMM YYYY")
-          institute
-          location
-          mark
-          title
+{
+  allContentfulEducation(sort: {fields: [endDate, startDate], order: DESC}) {
+    edges {
+      node {
+        id
+        description {
+          raw
         }
+        startDate(formatString: "MMMM YYYY")
+        endDate(formatString: "MMMM YYYY")
+        institute
+        location
+        mark
+        title
       }
     }
-    allContentfulExperience(sort: {fields: startDate, order: DESC}) {
-      edges {
-        node {
-          company
-          id
-          endDate(formatString: "MMMM YYYY")
-          position
-          startDate(formatString: "MMMM YYYY")
-          works {
-            image
-            name
-            url
-            id
-          }
-          description {
-            description
-          }
-        }
-      }
-    }
-    allContentfulPerson {
-      edges {
-        node {
-          address
-          email
-          image {
-            fluid {
-              src
-            }
-          }
+  }
+  allContentfulExperience(sort: {fields: startDate, order: DESC}) {
+    edges {
+      node {
+        company
+        id
+        endDate(formatString: "MMMM YYYY")
+        position
+        startDate(formatString: "MMMM YYYY")
+        works {
+          image
           name
-          about {
-            about
-          }
-          phone
+          url
+          id
+        }
+        description {
+          description
         }
       }
     }
   }
+  allContentfulPerson {
+    edges {
+      node {
+        address
+        email
+        image {
+          fluid(quality: 100) {
+            ...GatsbyContentfulFluid
+          }
+          id
+          title
+        }
+        name
+        about {
+          about
+        }
+        phone
+      }
+    }
+  }
+}
+
 `;
 
 

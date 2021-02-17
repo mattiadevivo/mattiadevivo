@@ -105,6 +105,7 @@ export const eduQuery = graphql`
           id
           endDate(formatString: "MMMM YYYY")
           position
+          location
           startDate(formatString: "MMMM YYYY")
           works {
             image

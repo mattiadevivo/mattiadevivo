@@ -25,13 +25,14 @@ class NavBar extends React.Component {
                 English
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="https://github.com/mattiadevivo" target="_blank">
+            <Nav.Link href="https://github.com/mattiadevivo" target="_blank" rel="noopener">
               <span style={{ marginRight: "10px" }}>Projects</span>
               <i class="fab fa-github"></i>
             </Nav.Link>
             <Nav.Link
               href="https://www.linkedin.com/in/mattia-de-vivo-281316157"
               target="_blank"
+              rel="noopener"
             >
               <span style={{ marginRight: "10px" }}>Linkedin</span>
               <i class="fab fa-linkedin"></i>

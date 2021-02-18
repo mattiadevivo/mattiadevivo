@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import Hero from './Hero/Hero';
 import About from './About/About';
 import Projects from './Projects/Projects';
@@ -25,13 +26,83 @@ function App() {
   }, []);
 
   return (
-    <PortfolioProvider value={{ hero, about, projects, contact, footer }}>
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
-      <Footer />
-    </PortfolioProvider>
+    <StaticQuery
+      query={graphql`
+    {
+          allContentfulEducation(sort: { fields: [endDate, startDate], order: DESC }) {
+        edges {
+          node {
+            id
+            description {
+              raw
+            }
+            startDate(formatString: "MMMM YYYY")
+            endDate(formatString: "MMMM YYYY")
+            institute
+            location
+            mark
+            title
+          }
+        }
+      }
+      allContentfulExperience(sort: {fields: startDate, order: DESC}) {
+        edges {
+          node {
+            company
+            id
+            endDate(formatString: "MMMM YYYY")
+            position
+            location
+            startDate(formatString: "MMMM YYYY")
+            works {
+              image
+              name
+              url
+              id
+            }
+            description {
+              description
+            }
+          }
+        }
+      }
+      allContentfulPerson {
+        edges {
+          node {
+            address
+            email
+            image {
+              fluid(quality: 100) {
+                ...GatsbyContentfulFluid
+              }
+              id
+              title
+            }
+            name
+            about {
+              about
+            }
+            phone
+          }
+        }
+      }
+    }`}
+      render={(data) => {
+        const educations = data.allContentfulEducation.edges;
+        const experiences = data.allContentfulExperience.edges;
+        const personalInfo = data.allContentfulPerson.edges[0].node;
+        return (<PortfolioProvider value={{ hero, about, projects, contact, footer, educations, experiences, personalInfo }}>
+          <Hero />
+          <About />
+          <Projects />
+          <Contact />
+          <Footer />
+        </PortfolioProvider>);
+      }
+
+      }
+    />
+
   );
 }
 

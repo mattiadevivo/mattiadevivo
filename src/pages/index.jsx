@@ -3,6 +3,7 @@ import Navbar from "../components/navbar";
 import EducationEntry from "../components/education-entry";
 import { Jumbotron, Container } from "react-bootstrap";
 import { graphql } from "gatsby";
+import { CookieBanner } from '@palmabit/react-cookie-law';
 
 import ExperienceEntry from "../components/experience-entry";
 import AboutSection from "../components/about";
@@ -23,6 +24,7 @@ const IndexPage = ({ data }) => {
         />
       </Seo>
       <Navbar />
+      <main className="pt-3">
       <AboutSection
         image={person.image}
         name={person.name}
@@ -72,6 +74,23 @@ const IndexPage = ({ data }) => {
         address={person.address}
         phone={person.phone}
         email={person.email}
+      />
+      </main>
+      <CookieBanner
+        message="Questo sito utilizza cookies tecnici e analytics anonimi di terze parti per offrirti la migliore qualità d'utilizzo."
+        wholeDomain={true}
+        policyLink="https://www.cookiesandyou.com/"
+        privacyPolicyLinkText="Per saperne di più"
+        showPreferencesOption={false}
+        showStatisticsOption={false}
+        showMarketingOption={false}
+        managePreferencesButtonText="Preferenze"
+        savePreferencesButtonText="Salva e chiudi"
+        acceptButtonText="Capisco"
+        onAccept={() => { }}
+        onAcceptPreferences={() => { }}
+        onAcceptStatistics={() => { }}
+        onAcceptMarketing={() => { }}
       />
     </React.Fragment>
   );

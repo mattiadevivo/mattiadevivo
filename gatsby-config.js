@@ -36,7 +36,7 @@ module.exports = {
           process.env.GATSBY_GTAG, // Google Analytics / GA
         ],
         gtagConfig: {
-          anonymize_ip: false,
+          anonymize_ip: true,
           cookie_expires: 0,
         },
         pluginConfig: {

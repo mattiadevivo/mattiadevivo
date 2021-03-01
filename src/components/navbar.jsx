@@ -27,7 +27,7 @@ class NavBar extends React.Component {
             </NavDropdown>
             <Nav.Link href="https://github.com/mattiadevivo" target="_blank" rel="noopener">
               <span style={{ marginRight: "10px" }}>Projects</span>
-              <i class="fab fa-github"></i>
+              <i className="fab fa-github"></i>
             </Nav.Link>
             <Nav.Link
               href="https://www.linkedin.com/in/mattia-de-vivo-281316157"
@@ -35,7 +35,7 @@ class NavBar extends React.Component {
               rel="noopener"
             >
               <span style={{ marginRight: "10px" }}>Linkedin</span>
-              <i class="fab fa-linkedin"></i>
+              <i className="fab fa-linkedin"></i>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

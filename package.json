@@ -17,9 +17,10 @@
   "license": "0BSD",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
+    "@palmabit/react-cookie-law": "^0.6.2",
     "bootstrap": "^4.6.0",
     "dotenv": "^8.2.0",
-    "gatsby": "^2.32.3",
+    "gatsby": "^2.32.8",
     "gatsby-image": "^2.11.0",
     "gatsby-plugin-google-gtag": "^2.8.0",
     "gatsby-plugin-manifest": "^2.12.0",

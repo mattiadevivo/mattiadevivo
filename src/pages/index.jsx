@@ -110,10 +110,12 @@ const IndexPage = ({ data }) => {
           },
           button: {
             color: "#FFFFFF",
+            fontWeight: "bold",
             fontSize: "small",
             backgroundColor: "#00B0ED",
             border: "1px solid #00B0ED",
-            margin: "2px"
+            margin: "2px",
+            padding: "5px"
           },
           policy: {
             color: "#FFFFFF",

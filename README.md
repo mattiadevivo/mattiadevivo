@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d4f6dd3b-4146-4df4-9906-753ec91fa6ac/deploy-status)](https://app.netlify.com/sites/mattiadevivo/deploys)
 
-<h1>Site has been moved to <a href="https://mattiadevivo.netlify.app/">https://mattiadevivo.netlify.app/</a></h1>
+<h1>Visit my website at <a href="https://mattiadevivo.netlify.app/">https://mattiadevivo.netlify.app/</a></h1>
 
 <p align="center">
   <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">

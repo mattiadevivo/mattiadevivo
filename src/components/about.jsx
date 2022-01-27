@@ -17,8 +17,6 @@ class AboutSection extends Component {
                   maxWidth: "200px",
                   maxHeight: "300px",
                   marginTop: "10px",
-                  borderStyle: "solid",
-                  borderWidth: "1px",
                 }}
               />
             </Col>

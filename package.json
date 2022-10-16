@@ -1,9 +1,9 @@
 {
-  "name": "mattiadevivo",
-  "version": "1.1.0",
+  "name": "mattiadevivo.dev",
+  "version": "1.0.0",
   "private": true,
-  "description": "mattiadevivo",
-  "author": "mattiadevivo",
+  "description": "mattiadevivo.dev",
+  "author": "Mattia De Vivo",
   "keywords": [
     "gatsby"
   ],
@@ -12,27 +12,33 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
   },
-  "license": "0BSD",
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^14.1.2",
-    "@palmabit/react-cookie-law": "^0.6.2",
-    "bootstrap": "^4.6.0",
-    "dotenv": "^8.2.0",
-    "gatsby": "^2.32.8",
-    "gatsby-image": "^2.11.0",
-    "gatsby-plugin-google-gtag": "^2.8.0",
-    "gatsby-plugin-manifest": "^2.12.0",
-    "gatsby-plugin-offline": "^3.10.0",
-    "gatsby-plugin-react-helmet": "^3.10.0",
-    "gatsby-plugin-sharp": "^2.14.1",
-    "gatsby-source-contentful": "^4.6.1",
-    "gatsby-source-filesystem": "^2.11.0",
-    "gatsby-transformer-sharp": "^2.12.0",
-    "react": "^16.13.1",
-    "react-bootstrap": "^1.5.0",
-    "react-dom": "^16.13.1",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mdx-js/react": "^2.1.5",
+    "@mui/material": "^5.10.9",
+    "gatsby": "^4.24.4",
+    "gatsby-plugin-google-analytics": "^4.24.0",
+    "gatsby-plugin-image": "^2.24.0",
+    "gatsby-plugin-manifest": "^4.24.0",
+    "gatsby-plugin-mdx": "^4.3.0",
+    "gatsby-plugin-sharp": "^4.24.0",
+    "gatsby-plugin-sitemap": "^5.24.0",
+    "gatsby-source-contentful": "^7.22.0",
+    "gatsby-source-filesystem": "^4.24.0",
+    "gatsby-transformer-sharp": "^4.24.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-helmet": "^6.1.5",
+    "typescript": "^4.8.3"
   }
 }

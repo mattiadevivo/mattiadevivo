@@ -10,8 +10,9 @@ npm init gatsby -ts
 ## Env Vars
 
 Gatsby has built-in support for loading environment variables into the browser and Functions.
-* `gatsby develop` command will setup `NODE_ENV` to `development`
-* For builds `NODE_ENV` will be set to `prodiction`
+
+- `gatsby develop` command will setup `NODE_ENV` to `development`
+- For builds `NODE_ENV` will be set to `prodiction`
 
 See [gatsby-config.ts](./gatsby-config.ts).
 
@@ -24,12 +25,48 @@ See [gatsby-config.ts](./gatsby-config.ts).
 ## Project structure
 
 Inside `src` folder:
+
 - `assets` folder is used for all the stuff which is not js/ts code
 - `context` folder is used for contexts (like AuthContext)
 - `data` used for json, constants
 - `layouts` folder used for components that are reused in other components
 - `lib` folder is used to collect 3rd paty apis
 - `services` folder is used to collect api calls
+
+## ESlint + Prettier
+
+Generate ESlint config by using:
+```bash
+npm init @eslint/config
+```
+Install Prettier:
+```bash
+npm install --save-dev prettier
+```
+
+Install eslint-config-prettier:
+```bash
+npm install --save-dev eslint-config-prettier
+```
+Then add `"prettier"` to the "extends" array in your `.eslintrc.*` file. Make sure to put it last, so it gets the chance to override other configs:
+```json
+{
+  "extends": [
+    "some-other-config-you-use",
+    "prettier"
+  ]
+}
+```
+
+## TodoList
+
+- UI Remake
+- tests
+- add blog posts with MDX
+- GitHub workflow for deploy
+- Docker container
+- prettier
+- linter
 
 ## 🚀 Quick start
 

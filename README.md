@@ -65,8 +65,7 @@ Then add `"prettier"` to the "extends" array in your `.eslintrc.*` file. Make su
 - add blog posts with MDX
 - GitHub workflow for deploy
 - Docker container
-- prettier
-- linter
+- webpack & babel for bundling and transpilation
 
 ## 🚀 Quick start
 

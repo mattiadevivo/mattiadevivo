@@ -41,7 +41,7 @@ const SEO = (props: Props) => {
     `
   );
   const metaDescription = props.description || site.siteMetadata.description;
-  const metaKeywords = props.keywords != null || site.siteMetadata.keywords;
+  const metaKeywords = props.keywords || site.siteMetadata.keywords;
   const metaTitle = props.title || site.siteMetadata.title;
   const metaImage = props.image || site.siteMetadata.image;
   const metaUrl = props.url || site.siteMetadata.siteUrl;

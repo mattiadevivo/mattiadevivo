@@ -71,7 +71,14 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        icon: "src/assets/images/icon.png",
+        start_url: '/',
+        name: "mattiadevivo",
+        short_name: "mdevivo",
+        description: "Application showing Mattia De Vivo website",
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
       },
     },
     "gatsby-plugin-mdx",
@@ -79,7 +86,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/images/",
+        path: "./src/assets/images/",
       },
       __key: "images",
     },

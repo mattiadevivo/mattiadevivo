@@ -1,4 +1,21 @@
+import {config as dotenvConfig} from 'dotenv';
 import type { GatsbyConfig } from "gatsby";
+
+const env = dotenvConfig({
+  path: `${process.env.NODE_ENV}.env`
+});
+if (env.error != null) {
+  console.error('Error while loading env variables from file');
+  process.exit(1);
+}
+
+declare module 'dotenv' {
+  interface DotenvParseOutput {
+    GATSBY_CONTENTFUL_ACCESS_TOKEN?: string,
+    GATSBY_CONTENTFUL_SPACE_ID?: string,
+    GATSBY_GOOGLE_TRACKING_ID?: string,
+  }
+}
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -12,13 +29,13 @@ const config: GatsbyConfig = {
   plugins: [{
     resolve: 'gatsby-source-contentful',
     options: {
-      "accessToken": "gLzYJ4jl7Y8M7Zsm3vgqeHl4sQeZ6x-_f5IFObH457Q",
-      "spaceId": "zye9nsrnon55"
+      "accessToken": env.parsed?.GATSBY_CONTENTFUL_ACCESS_TOKEN,
+      "spaceId": env.parsed?.GATSBY_CONTENTFUL_SPACE_ID,
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
     resolve: 'gatsby-plugin-google-analytics',
     options: {
-      "trackingId": "G-6GXJD9RXV8"
+      "trackingId": env.parsed?.GATSBY_GOOGLE_TRACKING_ID,
     }
   }, "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',

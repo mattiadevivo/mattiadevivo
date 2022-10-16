@@ -7,6 +7,14 @@ npm install -g gatsby-cli
 npm init gatsby -ts
 ```
 
+## Env Vars
+
+Gatsby has built-in support for loading environment variables into the browser and Functions.
+* `gatsby develop` command will setup `NODE_ENV` to `development`
+* For builds `NODE_ENV` will be set to `prodiction`
+
+See [gatsby-config.ts](./gatsby-config.ts).
+
 ## References
 
 [Gatsby + TS](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/)ß

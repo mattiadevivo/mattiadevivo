@@ -19,8 +19,12 @@ declare module 'dotenv' {
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `mattiadevivo`,
-    siteUrl: `https://mattiadevivo.dev`
+    title: "Mattia De Vivo - Developer",
+    siteUrl: "https://mattiadevivo.dev", 
+    description: "Mattia De Vivo is software engineer skilled in cloud, microservices, DevOps. IoT.",
+    keywords: ["mattia de vivo", "mattia", "de vivo", "mattiadevivo", "developer", "software developer", "sviluppatore software", "cloud developer", "software engineer", "devops engineer", "backend engineer", "cloud", "devops", "microservices", "iot", "aws", "cybersecurity", "treviso"],
+    author: "Mattia De Vivo",
+    image: "/images/icon.png",
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

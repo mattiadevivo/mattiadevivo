@@ -19,6 +19,17 @@ See [gatsby-config.ts](./gatsby-config.ts).
 
 [Gatsby + TS](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/)ß
 [Astro Boilerplate projects](https://github.com/ixartz/Astro-boilerplate)
+[https://blog.webdevsimplified.com/2022-07/react-folder-structure/]
+
+## Project structure
+
+Inside `src` folder:
+- `assets` folder is used for all the stuff which is not js/ts code
+- `context` folder is used for contexts (like AuthContext)
+- `data` used for json, constants
+- `layouts` folder used for components that are reused in other components
+- `lib` folder is used to collect 3rd paty apis
+- `services` folder is used to collect api calls
 
 ## 🚀 Quick start
 

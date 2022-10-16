@@ -1,20 +1,31 @@
 import React from "react";
-import Helmet from "react-helmet";
-import { StaticQuery, graphql } from "gatsby";
-import type { PageProps } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 
 type DataProps = {
     site: {
         siteMetadata: {
-            description: string,
+          title: string,
+          siteUrl: string, 
+          description: string,
+          keywords: string[],
+          author: string,
+          image: any,
         }
     }
 };
 
-const SEO = (props: PageProps) => {
-  return (
-    <StaticQuery
-      query={graphql`
+type Props = {
+  description?: string,
+  keywords?: string[],
+  title?: string,
+  image?: any,
+  url?: string,
+  children?: JSX.Element[],
+};
+
+const SEO = (props: Props) => {
+  const {site}: DataProps = useStaticQuery(
+    graphql`
         {
           site {
             siteMetadata {
@@ -27,77 +38,30 @@ const SEO = (props: PageProps) => {
             }
           }
         }
-      `}
-      render={(data) => {
-        const metaDescription =
-          props.description || data.site.siteMetadata.description;
-        const metaKeywords = props.keywords || data.site.siteMetadata.keywords;
-        const metaTitle = props.title || data.site.siteMetadata.title;
-        const metaImage = props.image || data.site.siteMetadata.image;
-        const metaUrl = props.url || data.site.siteMetadata.siteUrl;
-        return (
-          <Helmet
-          htmlAttributes={{
-            lang: "en"
-          }}
-            title={metaTitle}
-            meta={[
-              {
-                name: "description",
-                content: metaDescription,
-              },
-              {
-                name: "keywords",
-                content: metaKeywords.join(", "),
-              },
-              {
-                name: "twitter:creator",
-                content: data.site.siteMetadata.author,
-              },
-              {
-                name: "twitter:title",
-                content: metaTitle,
-              },
-              {
-                name: "twitter:description",
-                content: metaDescription,
-              },
-              {
-                property: "og:title",
-                content: metaTitle,
-              },
-              {
-                property: "og:url",
-                content: metaUrl,
-              },
-              {
-                property: "og:description",
-                content: metaDescription,
-              },
-              {
-                property: "og:image",
-                content: metaImage
-              },
-              {
-                property: "og:image:width",
-                content: metaImage.width
-              },
-              {
-                property: "og:image:height",
-                content: metaImage.height
-              },
-              {
-                name: "twitter:card",
-                content: "summary_large_image"
-              }
-            ]}
-          >
-            {props.children}
-          </Helmet>
-        );
-      }}
-    />
+      `
   );
+  const metaDescription = props.description || site.siteMetadata.description;
+  const metaKeywords = props.keywords || site.siteMetadata.keywords;
+  const metaTitle = props.title || site.siteMetadata.title;
+  const metaImage = props.image || site.siteMetadata.image;
+  const metaUrl = props.url || site.siteMetadata.siteUrl;
+  return (
+  <>
+  <title>{metaTitle}</title>
+  <meta name="description" content={metaDescription} />
+  <meta name="keywords" content={metaKeywords.join(', ')} />
+  <meta name="twitter:creator" content={site.siteMetadata.author} />
+  <meta name="twitter:title"content={metaTitle} />
+  <meta name="twitter:description" content={metaDescription} />
+  <meta name="og:title"content={metaTitle} />
+  <meta name="og:url"content={metaUrl} />
+  <meta name="og:description"content={metaDescription} />
+  <meta name="og:image"content={metaImage} />
+  <meta name="og:image:width"content={metaImage.width} />
+  <meta name="og:image:width"content={metaImage.height} />
+  <meta name="twitter:card"content="summary_large_image" />
+  {props.children}
+  </>);
 };
 
 export default SEO;

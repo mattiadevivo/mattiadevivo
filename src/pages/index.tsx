@@ -25,16 +25,19 @@ const entries = [
 
 const IndexPage = (): JSX.Element => {
   return (
-    <Layout>
-      <Container
-        sx={{
-          marginTop: "10px"
-        }}
-      >
-        <About name="Mattia De Vio" about={aboutData} />
-        <Education entries={entries} />
-      </Container>
-    </Layout>
+    <>
+      <SEO />
+      <Layout>
+        <Container
+          sx={{
+            marginTop: "10px"
+          }}
+        >
+          <About name="Mattia De Vio" about={aboutData} />
+          <Education entries={entries} />
+        </Container>
+      </Layout>
+    </>
   );
 };
 

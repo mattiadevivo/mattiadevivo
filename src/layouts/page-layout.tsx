@@ -1,3 +1,4 @@
+import { Toolbar } from "@mui/material";
 import React from "react";
 import SEO from "../components/seo";
 import NavBar from "./navbar";
@@ -9,8 +10,8 @@ type Props = {
 const PageLayout = ({ children }: Props) => {
   return (
     <main>
-      <SEO />
       <NavBar />
+      <Toolbar />
       {children}
     </main>
   );

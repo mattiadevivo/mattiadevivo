@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Container,
-  Paper,
-  Skeleton,
-  Stack,
-  Typography
-} from "@mui/material";
-import { GatsbyImageProps, GatsbyImage } from "gatsby-plugin-image";
+import { Avatar, Paper, Skeleton, Stack, Typography } from "@mui/material";
 import React from "react";
 
 type Props = {
@@ -20,7 +12,7 @@ const AboutSection = (props: Props) => {
       <Skeleton variant="circular">
         <Avatar />
       </Skeleton>
-      <Typography>{props.name}</Typography>
+      <Typography variant="h3">{props.name}</Typography>
       <Paper
         elevation={3}
         sx={{

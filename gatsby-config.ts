@@ -61,6 +61,7 @@ const config: GatsbyConfig = {
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    'gatsby-plugin-dts-css-modules',
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {

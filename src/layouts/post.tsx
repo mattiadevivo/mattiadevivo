@@ -1,10 +1,10 @@
 import { Container } from '@mui/material';
 import React from 'react';
-import {container} from "./post.module.css";
+import * as style from "./post.module.css";
 
 const Post = (): JSX.Element => {
     return(
-        <Container>
+        <Container style={style.container}>
             <span>Banaa</span>
         </Container>
     );

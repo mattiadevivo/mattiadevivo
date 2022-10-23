@@ -20,6 +20,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@fontsource/roboto": "^4.5.8",
     "@mdx-js/react": "^2.1.5",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.9",
@@ -51,6 +52,7 @@
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.1.0",
     "eslint-plugin-react": "^7.31.10",
+    "gatsby-plugin-dts-css-modules": "^3.0.0",
     "prettier": "2.7.1",
     "typescript": "^4.8.4"
   }

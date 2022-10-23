@@ -1,11 +1,12 @@
+import { Container } from '@mui/material';
 import React from 'react';
 import {container} from "./post.module.css";
 
 const Post = (): JSX.Element => {
     return(
-        <div className={container}>
+        <Container>
             <span>Banaa</span>
-        </div>
+        </Container>
     );
 };
 

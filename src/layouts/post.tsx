@@ -1,13 +1,14 @@
-import { Container } from '@mui/material';
-import React from 'react';
-import * as style from "./post.module.css";
+import { Container, Typography } from "@mui/material";
+import React from "react";
 
 const Post = (): JSX.Element => {
-    return(
-        <Container style={style.container}>
-            <span>Banaa</span>
-        </Container>
-    );
+  return (
+    <Container>
+      <span>
+        <Typography>Banana</Typography>
+      </span>
+    </Container>
+  );
 };
 
 export default Post;

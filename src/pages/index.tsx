@@ -1,152 +1,40 @@
 import * as React from "react";
 import type { HeadFC } from "gatsby";
 import SEO from "../components/seo";
-import Post from "../layouts/post";
-import NavBar from "../layouts/navbar";
+import About from "../components/about";
+import Education from "../components/education";
+import Layout from "../layouts/page-layout";
+import { Container } from "@mui/material";
 
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-};
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-};
-const headingAccentStyles = {
-  color: "#663399",
-};
-const paragraphStyles = {
-  marginBottom: 48,
-};
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-};
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-};
-const doclistStyles = {
-  paddingLeft: 0,
-};
-const listItemStyles = {
-  fontWeight: 300,
-  fontSize: 24,
-  maxWidth: 560,
-  marginBottom: 30,
-};
+const aboutData = `
+Mattia, Developer and Computer Science enthusiast. Since childhood I have been interested in the IT area. I am skilled in high-level programming languages; at the moment I use JavaScript, Go, and Java but I've also worked with Python, C#, Dart, C. Thanks to the variety of my background and my current experience I am building a 360° knowledge of the necessary building blocks for software design, development and deployment. I am pretty confident with some Cybersecurity topics such as Cryptography, Network Security, Traffic Analysis, Penetration Testing, Mobile Security, OS security, Digital Forensics, GDPR and NIS. I am also confident with tools and practical procedures including OWASP, OpenVas, Wireshark, ntop, nmap, Recon-ng. I have proven experience in writing mobile applications with Flutter and I also like to develop Full Stack applications and websites using JavaScript frameworks and libraries such React.js, Angular 2, Express.js and Node.js or Python Django. I like both SQL (Microsoft SQL Server, PostgreSQL, MySQL) and NOSQL (MongoDB, Cloud Firestore, Redis) environments. I am currently working in an IoT company as a DevOps Engineer and studying innovative topics such as Blockchain and Digital Asstes.
+`;
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-};
-
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  display: `inline-block`,
-  marginBottom: 24,
-  marginRight: 12,
-};
-
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: 14,
-  marginTop: 10,
-  marginBottom: 0,
-  lineHeight: 1.25,
-};
-
-const docLinks = [
+const entries = [
   {
-    text: "TypeScript Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/",
-    color: "#8954A8",
-  },
-  {
-    text: "GraphQL Typegen Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/",
-    color: "#8954A8",
-  },
-];
-
-const badgeStyle = {
-  color: "#fff",
-  backgroundColor: "#088413",
-  border: "1px solid #088413",
-  fontSize: 11,
-  fontWeight: "bold",
-  letterSpacing: 1,
-  borderRadius: 4,
-  padding: "4px 6px",
-  display: "inline-block",
-  position: "relative" as "relative",
-  top: -2,
-  marginLeft: 10,
-  lineHeight: 1,
-};
-
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
+    title: "Backend Engineer",
+    institute: "Electrolux",
+    startDate: "July 2022",
+    endDate: null,
+    location: "(Remote and occasionaly Pordenone)",
+    mark: "110L",
     description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#8EB814",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    badge: true,
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-    color: "#663399",
-  },
+      "Microservices development. Frontend development (React.js, TypeScript). Defining AWS cloud services with Terraform. DevOps reference person for the backend development team."
+  }
 ];
 
 const IndexPage = (): JSX.Element => {
   return (
-    <>
-    <NavBar />
-    <main>
-      <Post></Post>
-    </main>
-    </>
+    <Layout>
+      <Container
+        sx={{
+          marginTop: "10px"
+        }}
+      >
+        <About name="Mattia De Vio" about={aboutData} />
+        <Education entries={entries} />
+      </Container>
+    </Layout>
   );
 };
 

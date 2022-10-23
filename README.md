@@ -58,6 +58,12 @@ Then add `"prettier"` to the "extends" array in your `.eslintrc.*` file. Make su
 }
 ```
 
+Follow `Prettier-ESlint` VSCode extension isnstructions for more.
+
+## MUI
+
+use `sx` prop in components to override style of a single component.
+
 ## TodoList
 
 - UI Remake

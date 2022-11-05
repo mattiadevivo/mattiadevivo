@@ -26,14 +26,13 @@ const entries = [
 const IndexPage = (): JSX.Element => {
   return (
     <>
-      <SEO />
       <Layout>
         <Container
           sx={{
             marginTop: "10px"
           }}
         >
-          <About name="Mattia De Vio" about={aboutData} />
+          <About name="Mattia De Vivo" about={aboutData} />
           <Education entries={entries} />
         </Container>
       </Layout>

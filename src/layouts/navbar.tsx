@@ -12,6 +12,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { Link } from "@mui/material";
+import { marginX } from "./constants";
 
 interface Props {
   /**
@@ -22,7 +24,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact"];
+const navItems = ["Home", "Blog"];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -35,7 +37,7 @@ export default function DrawerAppBar(props: Props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Mattia De Vivo
       </Typography>
       <Divider />
       <List>
@@ -71,13 +73,19 @@ export default function DrawerAppBar(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            MUI
+            Mattia De Vivo
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
-              </Button>
+              <Link
+                component="button"
+                key={item}
+                href={item}
+                underline="none"
+                sx={{ color: "whitesmoke", marginX: marginX }}
+              >
+                <Typography>{item}</Typography>
+              </Link>
             ))}
           </Box>
         </Toolbar>

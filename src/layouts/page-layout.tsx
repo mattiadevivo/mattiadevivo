@@ -9,11 +9,12 @@ type Props = {
 
 const PageLayout = ({ children }: Props) => {
   return (
-    <main>
+    <>
+      <SEO />
       <NavBar />
       <Toolbar />
-      {children}
-    </main>
+      <main>{children}</main>
+    </>
   );
 };
 

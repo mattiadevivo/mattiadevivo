@@ -48,6 +48,7 @@ const SEO = (props: Props) => {
   return (
     <>
       <title>{metaTitle}</title>
+      <meta name="viewport" content="initial-scale=1, width=device-width" />
       <meta name="description" content={metaDescription} />
       <meta name="keywords" content={metaKeywords.join(", ")} />
       <meta name="twitter:creator" content={site.siteMetadata.author} />

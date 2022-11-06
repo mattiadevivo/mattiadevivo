@@ -64,6 +64,11 @@ Follow `Prettier-ESlint` VSCode extension isnstructions for more.
 
 use `sx` prop in components to override style of a single component.
 
+### Theming tools
+
+[mui-theme-generator](https://bareynol.github.io/mui-theme-creator/)
+[Material Palette generator](https://material.io/inline-tools/color/)
+
 ## TodoList
 
 - UI Remake

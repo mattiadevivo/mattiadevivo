@@ -11,8 +11,8 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { Link } from "@mui/material";
+// import { Link } from "@mui/material";
+import { Link } from "gatsby";
 import { marginX } from "./constants";
 
 interface Props {
@@ -24,7 +24,10 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "Blog"];
+const navItems = [
+  { name: "Home", path: "/" },
+  { name: "Blog", path: "/posts" }
+];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -42,9 +45,9 @@ export default function DrawerAppBar(props: Props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -57,7 +60,7 @@ export default function DrawerAppBar(props: Props) {
 
   return (
     <>
-      <AppBar component="nav" position="fixed">
+      <AppBar component="nav">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -75,22 +78,22 @@ export default function DrawerAppBar(props: Props) {
           >
             Mattia De Vivo
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" }
+            }}
+          >
             {navItems.map((item) => (
-              <Link
-                component="button"
-                key={item}
-                href={item}
-                underline="none"
-                sx={{ color: "whitesmoke", marginX: marginX }}
-              >
-                <Typography>{item}</Typography>
-              </Link>
+              <Box key={item.name} mx={marginX}>
+                <Link to={item.path}>
+                  <Typography>{item.name}</Typography>
+                </Link>
+              </Box>
             ))}
           </Box>
         </Toolbar>
       </AppBar>
-      <Box component="nav">
+      <Box component="nav" sx={{ display: { sm: "none" } }}>
         <Drawer
           container={container}
           variant="temporary"

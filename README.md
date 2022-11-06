@@ -69,7 +69,17 @@ use `sx` prop in components to override style of a single component.
 [mui-theme-generator](https://bareynol.github.io/mui-theme-creator/)
 [Material Palette generator](https://material.io/inline-tools/color/)
 
+## GraphQL
+
+Inside the GraphQL data layer, information is stored in objects called nodes. A node is the smallest form unit of data in the data layer. Different source plugins create different types of nodes, each of which have their own properties. 
+
+A **transformer plugin** converts nodes from one type to another. For example, the gatsby-plugin-mdx plugin transforms File nodes that have the .mdx extension into MDX nodes, which have a different set of fields that you can query using GraphQL. 
+
 ## TodoList
+
+Start from here
+https://www.gatsbyjs.com/docs/tutorial/part-6/
+https://rogulski.it/blog/gatsby-contentful-markdown-jsx-component/
 
 - UI Remake
 - tests

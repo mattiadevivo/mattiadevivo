@@ -2,7 +2,7 @@ import { config as dotenvConfig } from "dotenv";
 import type { GatsbyConfig } from "gatsby";
 
 const env = dotenvConfig({
-  path: `${process.env.NODE_ENV}.env`,
+  path: `${process.env.NODE_ENV}.env`
 });
 if (env.error != null) {
   console.error("Error while loading env variables from file");
@@ -19,10 +19,10 @@ declare module "dotenv" {
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: "Mattia De Vivo - Developer",
+    title: "Mattia De Vivo",
     siteUrl: "https://mattiadevivo.dev",
     description:
-      "Mattia De Vivo is software engineer skilled in cloud, microservices, DevOps. IoT.",
+      "Mattia De Vivo is software engineer skilled in cloud, microservices and DevOps.",
     keywords: [
       "mattia de vivo",
       "mattia",
@@ -41,10 +41,10 @@ const config: GatsbyConfig = {
       "iot",
       "aws",
       "cybersecurity",
-      "treviso",
+      "treviso"
     ],
     author: "Mattia De Vivo",
-    image: "/images/icon.png",
+    image: "/images/icon.png"
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -55,51 +55,51 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-contentful",
       options: {
         accessToken: env.parsed?.GATSBY_CONTENTFUL_ACCESS_TOKEN,
-        spaceId: env.parsed?.GATSBY_CONTENTFUL_SPACE_ID,
-      },
+        spaceId: env.parsed?.GATSBY_CONTENTFUL_SPACE_ID
+      }
     },
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    'gatsby-plugin-dts-css-modules',
+    "gatsby-plugin-dts-css-modules",
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: env.parsed?.GATSBY_GOOGLE_TRACKING_ID,
-      },
+        trackingId: env.parsed?.GATSBY_GOOGLE_TRACKING_ID
+      }
     },
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/assets/images/icon.png",
-        start_url: '/',
+        start_url: "/",
         name: "mattiadevivo",
         short_name: "mdevivo",
         description: "Application showing Mattia De Vivo website",
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,
-        display: `standalone`,
-      },
+        display: `standalone`
+      }
     },
     "gatsby-plugin-mdx",
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/assets/images/",
+        path: "./src/assets/images/"
       },
-      __key: "images",
+      __key: "images"
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "pages",
-        path: "./src/pages/",
+        name: "blog",
+        path: `${__dirname}/src/pages/blog/`
       },
-      __key: "pages",
-    },
-  ],
+      __key: "pages"
+    }
+  ]
 };
 
 export default config;

@@ -52,7 +52,7 @@ const AboutSection = (props: Props) => {
       justifyContent="space-evenly"
       alignItems="center"
       spacing={{ xs: 1, sm: 2, md: 4 }}
-      margin={1}
+      my={2}
     >
       <Grid container spacing={1}>
         <Grid item xs={12} sm={4} display="flex" justifyContent="center">

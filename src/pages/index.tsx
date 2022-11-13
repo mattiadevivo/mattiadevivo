@@ -2,7 +2,7 @@ import * as React from "react";
 import type { HeadFC } from "gatsby";
 import SEO from "../components/seo";
 import About from "../components/about";
-import Layout from "../layouts/page-layout";
+import { PageLayout } from "../layouts/page-layout";
 import { Container } from "@mui/material";
 import PostShowcase from "../components/post-showcase";
 
@@ -13,12 +13,12 @@ Mattia, Developer and Computer Science enthusiast. Since childhood I have been i
 const IndexPage = (): JSX.Element => {
   return (
     <>
-      <Layout>
+      <PageLayout>
         <Container>
           <About about={aboutData} />
           <PostShowcase />
         </Container>
-      </Layout>
+      </PageLayout>
     </>
   );
 };

@@ -26,7 +26,7 @@ interface Props {
 const drawerWidth = 240;
 const navItems = [
   { name: "Home", path: "/" },
-  { name: "Blog", path: "/posts" }
+  { name: "Blog", path: "/blog" },
 ];
 
 export default function DrawerAppBar(props: Props) {
@@ -80,7 +80,7 @@ export default function DrawerAppBar(props: Props) {
           </Typography>
           <Box
             sx={{
-              display: { xs: "none", sm: "flex" }
+              display: { xs: "none", sm: "flex" },
             }}
           >
             {navItems.map((item) => (
@@ -100,14 +100,14 @@ export default function DrawerAppBar(props: Props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true // Better open performance on mobile.
+            keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: drawerWidth
-            }
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}

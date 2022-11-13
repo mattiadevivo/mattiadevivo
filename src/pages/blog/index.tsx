@@ -7,7 +7,7 @@ import { PageLayout } from "../../layouts/page-layout";
 const BlogIndex = () => {
   const data = useStaticQuery(graphql`
     query mdxfiles {
-      allMdx(sort: { fields: frontmatter___date }, limit: 3) {
+      allMdx(sort: { frontmatter: { date: ASC } }, limit: 3) {
         nodes {
           id
           frontmatter {
@@ -21,14 +21,15 @@ const BlogIndex = () => {
     }
   `);
 
-  // TODO: create Post cards
-  <PageLayout>
-    <Container>
-      <PostShowcase />
-      <Typography variant="h1">Navigate through all the posts</Typography>
-      <Grid container direction="row" spacing={1}></Grid>
-    </Container>
-  </PageLayout>;
+  return (
+    <PageLayout>
+      <Container>
+        <PostShowcase />
+        <Typography variant="h4">Navigate through all the posts</Typography>
+        <Grid container direction="row" spacing={1}></Grid>
+      </Container>
+    </PageLayout>
+  );
 };
 
 export default BlogIndex;

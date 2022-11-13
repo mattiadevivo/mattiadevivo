@@ -4,7 +4,7 @@ import {
   Button,
   CardActions,
   Stack,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
@@ -20,7 +20,7 @@ type Props = {};
 const PostShowcase = (props: Props): JSX.Element => {
   const data = useStaticQuery(graphql`
     query mdxfiles {
-      allMdx(sort: { fields: frontmatter___date }, limit: 3) {
+      allMdx(sort: { frontmatter: { date: ASC } }, limit: 3) {
         nodes {
           id
           frontmatter {

@@ -1,11 +1,5 @@
-import {
-  Card,
-  CardContent,
-  Button,
-  CardActions,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import { PostCard } from "./post-card";
 import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
 
@@ -20,44 +14,34 @@ type Props = {};
 const PostShowcase = (props: Props): JSX.Element => {
   const data = useStaticQuery(graphql`
     query mdxfiles {
-      allMdx(sort: { frontmatter: { date: ASC } }, limit: 3) {
+      allMdx(sort: { frontmatter: { date: DESC } }, limit: 3) {
         nodes {
           id
           frontmatter {
             author
             title
-            date
+            date(formatString: "D MMMM YYYY")
+            slug
           }
-          excerpt
         }
       }
     }
   `);
   return (
-    <Stack
-      direction="column"
-      justifyContent="space-evenly"
-      alignItems="center"
-      spacing={{ xs: 1, sm: 2, md: 4 }}
-      margin={1}
-    >
-      <Typography variant="h3">Latest Posts</Typography>
-      {data.allMdx.nodes.map((node: any) => (
-        <Card key={node.id}>
-          <CardContent>
-            <Typography variant="h5" component="div">
-              {node.frontmatter.title}
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              Posted {node.frontmatter.date}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Card>
-      ))}
-    </Stack>
+    <>
+      <Typography variant="h4">Latest Posts</Typography>
+      <Grid container direction="row" spacing={1}>
+        {data.allMdx.nodes.map((node: any) => (
+          <Grid item key={node.frontmatter.id} xs={12} sm={4}>
+            <PostCard
+              title={node.frontmatter.title}
+              date={node.frontmatter.date}
+              link={`/blog/${node.frontmatter.slug}`}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </>
   );
 };
 

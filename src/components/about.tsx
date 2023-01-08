@@ -1,9 +1,19 @@
-import { Container, Grid, Paper, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Link,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import {
   GatsbyImage,
   getImage,
   IGatsbyImageData,
-  ImageDataLike
+  ImageDataLike,
 } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
@@ -71,6 +81,25 @@ const AboutSection = (props: Props) => {
         </Grid>
       </Grid>
       <Typography>{person.about.about}</Typography>
+      <Box component="span">
+        <Typography variant="h5">Follow me on:</Typography>
+        <Link
+          href="https://www.linkedin.com/in/mattia-de-vivo-281316157/"
+          sx={{
+            color: "primary",
+          }}
+        >
+          <LinkedInIcon />
+        </Link>
+        <Link
+          href="https://github.com/mattiadevivo"
+          sx={{
+            color: "black",
+          }}
+        >
+          <GitHubIcon />
+        </Link>
+      </Box>
     </Stack>
   );
 };

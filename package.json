@@ -5,7 +5,11 @@
   "description": "mattiadevivo.dev",
   "author": "Mattia De Vivo",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "mattiadevivo",
+    "devloper",
+    "devops",
+    "backend"
   ],
   "scripts": {
     "develop": "gatsby develop",

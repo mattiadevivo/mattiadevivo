@@ -10,6 +10,7 @@ type Props = {
       frontmatter: {
         title: string;
         date: string;
+        // TODO: add image see https://www.gatsbyjs.com/docs/how-to/images-and-media/working-with-images-in-markdown/#configuring-for-images-and-posts-in-different-directories
       };
     };
   };

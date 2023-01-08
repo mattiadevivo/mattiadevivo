@@ -81,10 +81,15 @@ const AboutSection = (props: Props) => {
         </Grid>
       </Grid>
       <Typography>{person.about.about}</Typography>
-      <Box component="span">
-        <Typography variant="h5">Follow me on:</Typography>
+      <Box component="div" display="flex" alignItems="center">
+        <Typography variant="h5" component="span">
+          Follow me on:
+        </Typography>
         <Link
           href="https://www.linkedin.com/in/mattia-de-vivo-281316157/"
+          marginLeft={1}
+          display="flex"
+          alignItems="center"
           sx={{
             color: "primary",
           }}
@@ -93,6 +98,9 @@ const AboutSection = (props: Props) => {
         </Link>
         <Link
           href="https://github.com/mattiadevivo"
+          marginX={1}
+          display="flex"
+          alignItems="center"
           sx={{
             color: "black",
           }}

@@ -32,7 +32,7 @@ const PostShowcase = (): JSX.Element => {
   `);
   return (
     <Box marginY={2}>
-      <Typography variant="h4" marginY={3}>
+      <Typography variant="h4" marginY={3} fontWeight="bold">
         Latest Posts
       </Typography>
       <Grid container direction="row" spacing={1}>

@@ -8,14 +8,12 @@ import PostShowcase from "../components/post-showcase";
 
 const IndexPage = (): JSX.Element => {
   return (
-    <>
-      <PageLayout>
-        <Container>
-          <About />
-          <PostShowcase />
-        </Container>
-      </PageLayout>
-    </>
+    <PageLayout>
+      <Container>
+        <About />
+        <PostShowcase />
+      </Container>
+    </PageLayout>
   );
 };
 

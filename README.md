@@ -108,9 +108,5 @@ Start from here
 https://www.gatsbyjs.com/docs/tutorial/part-6/
 https://rogulski.it/blog/gatsby-contentful-markdown-jsx-component/
 
-- UI Remake
-- tests
-- add blog posts with MDX
 - GitHub workflow for deploy
 - Docker container
-- webpack & babel for bundling and transpilation

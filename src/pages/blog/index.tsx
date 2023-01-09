@@ -3,7 +3,6 @@ import { graphql, useStaticQuery } from "gatsby";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 import PostCard from "../../components/post-card";
-import PostShowcase from "../../components/post-showcase";
 import { PageLayout } from "../../layouts/page-layout";
 
 const BlogIndex = () => {
@@ -31,7 +30,7 @@ const BlogIndex = () => {
   return (
     <PageLayout>
       <Container>
-        <Typography variant="h4" marginY={3}>
+        <Typography variant="h4" marginY={3} fontWeight="bold">
           Blog Posts
         </Typography>
         <Grid container direction="row" spacing={1} marginTop={3}>

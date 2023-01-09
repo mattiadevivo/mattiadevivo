@@ -44,7 +44,9 @@ const SEO = (props: Props) => {
   const metaKeywords = props.keywords || site.siteMetadata.keywords;
   const metaTitle = props.title || site.siteMetadata.title;
   const metaImage = props.image || site.siteMetadata.image;
-  const metaUrl = props.url || site.siteMetadata.siteUrl;
+  const metaUrl = props.url
+    ? `${site.siteMetadata.siteUrl}/${props.url}`
+    : site.siteMetadata.siteUrl;
   return (
     <>
       <title>{metaTitle}</title>
@@ -54,13 +56,14 @@ const SEO = (props: Props) => {
       <meta name="twitter:creator" content={site.siteMetadata.author} />
       <meta name="twitter:title" content={metaTitle} />
       <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={metaUrl} />
       <meta name="og:title" content={metaTitle} />
       <meta name="og:url" content={metaUrl} />
       <meta name="og:description" content={metaDescription} />
       <meta name="og:image" content={metaImage} />
       <meta name="og:image:width" content={metaImage.width} />
       <meta name="og:image:width" content={metaImage.height} />
-      <meta name="twitter:card" content="summary_large_image" />
       {props.children}
     </>
   );

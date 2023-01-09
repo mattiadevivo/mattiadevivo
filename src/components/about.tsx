@@ -1,36 +1,12 @@
-import {
-  Box,
-  Container,
-  Grid,
-  Link,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Link, Stack, Typography } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import {
-  GatsbyImage,
-  getImage,
-  IGatsbyImageData,
-  ImageDataLike,
-} from "gatsby-plugin-image";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
 
-type Props = {
-  about: string;
-};
-
-type PersonData = {
-  image: ImageDataLike;
-  about: { about: string };
-  address: string;
-  email: string;
-};
-
-const AboutSection = (props: Props) => {
-  const data = useStaticQuery(
+const AboutSection = () => {
+  const data = useStaticQuery<Queries.personQuery>(
     graphql`
       query person {
         allContentfulPerson {
@@ -46,6 +22,7 @@ const AboutSection = (props: Props) => {
                   quality: 100
                   placeholder: BLURRED
                   layout: CONSTRAINED
+                  height: 250
                 )
               }
             }
@@ -54,7 +31,7 @@ const AboutSection = (props: Props) => {
       }
     `
   );
-  const person: PersonData = data.allContentfulPerson.edges[0].node;
+  const person = data.allContentfulPerson.edges[0].node;
   const image = getImage(person.image) as IGatsbyImageData;
   return (
     <Stack
@@ -80,7 +57,7 @@ const AboutSection = (props: Props) => {
           <Typography variant="h3">Hi There! 👋</Typography>
         </Grid>
       </Grid>
-      <Typography>{person.about.about}</Typography>
+      <Typography>{person.about?.about}</Typography>
       <Box component="div" display="flex" alignItems="center">
         <Typography variant="h5" component="span">
           Follow me on:

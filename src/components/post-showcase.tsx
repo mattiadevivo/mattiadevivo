@@ -2,8 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { PostCard } from "./post-card";
 import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
-
-type Props = Queries.mdxfilesQuery;
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
 /**
  *
@@ -11,8 +10,8 @@ type Props = Queries.mdxfilesQuery;
  * @return {*}  {JSX.Element}
  */
 const PostShowcase = (): JSX.Element => {
-  const data = useStaticQuery<Queries.AllMdxFilesQuery>(graphql`
-    query mdxfiles {
+  const data = useStaticQuery<Queries.latestMdxFilesQuery>(graphql`
+    query latestMdxFiles {
       allMdx(sort: { frontmatter: { date: DESC } }, limit: 3) {
         nodes {
           id
@@ -33,16 +32,19 @@ const PostShowcase = (): JSX.Element => {
   `);
   return (
     <Box marginY={2}>
-      <Typography variant="h4">Latest Posts</Typography>
+      <Typography variant="h4" marginY={3}>
+        Latest Posts
+      </Typography>
       <Grid container direction="row" spacing={1}>
-        {data.allMdx.nodes.map((node: any) => (
+        {data.allMdx.nodes.map((node) => (
           <Grid item key={node.id} xs={12} sm={4}>
             <PostCard
-              title={node.frontmatter.title}
-              date={node.frontmatter.date}
-              link={`/blog/${node.frontmatter.slug}`}
+              title={node.frontmatter?.title ?? ""}
+              date={node.frontmatter?.date ?? ""}
+              link={`/blog/${node.frontmatter?.slug}`}
               imageData={
-                node.frontmatter.featuredImage?.childImageSharp?.gatsbyImageData
+                node.frontmatter?.featuredImage?.childImageSharp
+                  ?.gatsbyImageData as IGatsbyImageData
               }
             />
           </Grid>

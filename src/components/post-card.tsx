@@ -20,7 +20,7 @@ type Props = {
 const PostCard = (props: Props) => {
   const image = getImage(props.imageData);
   return (
-    <Card>
+    <Card elevation={6}>
       {image && (
         <CardMedia
           sx={{ padding: 1, display: "flex", justifyContent: "center" }}
@@ -29,7 +29,7 @@ const PostCard = (props: Props) => {
         </CardMedia>
       )}
       <CardContent>
-        <Typography variant="h5" component="div">
+        <Typography variant="h6" component="div">
           {props.title}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">

@@ -14,7 +14,7 @@ const Footer = (): JSX.Element => {
         backgroundColor: (theme) =>
           theme.palette.mode === "light"
             ? theme.palette.grey[200]
-            : theme.palette.grey[800]
+            : theme.palette.grey[800],
       }}
     >
       <Grid item xs={12} sm={6} display="flex" justifyContent="center">
@@ -24,13 +24,7 @@ const Footer = (): JSX.Element => {
         >
           <LinkedInIcon />
         </Link>
-        <Link
-          href="https://github.com/mattiadevivo"
-          color="inherit"
-          sx={{
-            color: "primary"
-          }}
-        >
+        <Link href="https://github.com/mattiadevivo" color="inherit">
           <GitHubIcon />
         </Link>
       </Grid>

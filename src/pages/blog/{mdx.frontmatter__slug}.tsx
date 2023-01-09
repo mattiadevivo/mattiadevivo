@@ -10,6 +10,7 @@ type Props = {
       frontmatter: {
         title: string;
         date: string;
+        featuredImage: any;
         // TODO: add image see https://www.gatsbyjs.com/docs/how-to/images-and-media/working-with-images-in-markdown/#configuring-for-images-and-posts-in-different-directories
       };
     };
@@ -32,11 +33,16 @@ const BlogPost = ({ data, children }: Props) => {
 };
 
 export const query = graphql`
-  query ($id: String) {
+  query getBlogPostById($id: String) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title
         date(formatString: "D MMMM YYYY")
+        featuredImage {
+          childImageSharp {
+            gatsbyImageData(width: 800)
+          }
+        }
       }
       excerpt
     }

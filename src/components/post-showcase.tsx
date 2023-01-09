@@ -3,16 +3,15 @@ import { PostCard } from "./post-card";
 import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
 
-type Props = {};
+type Props = Queries.mdxfilesQuery;
 
 /**
  *
  * Show Latest Blog Posts
- * @param {Props} props
  * @return {*}  {JSX.Element}
  */
-const PostShowcase = (props: Props): JSX.Element => {
-  const data = useStaticQuery(graphql`
+const PostShowcase = (): JSX.Element => {
+  const data = useStaticQuery<Queries.AllMdxFilesQuery>(graphql`
     query mdxfiles {
       allMdx(sort: { frontmatter: { date: DESC } }, limit: 3) {
         nodes {
@@ -22,6 +21,11 @@ const PostShowcase = (props: Props): JSX.Element => {
             title
             date(formatString: "D MMMM YYYY")
             slug
+            featuredImage {
+              childImageSharp {
+                gatsbyImageData(layout: CONSTRAINED, height: 200, formats: WEBP)
+              }
+            }
           }
         }
       }
@@ -37,6 +41,9 @@ const PostShowcase = (props: Props): JSX.Element => {
               title={node.frontmatter.title}
               date={node.frontmatter.date}
               link={`/blog/${node.frontmatter.slug}`}
+              imageData={
+                node.frontmatter.featuredImage?.childImageSharp?.gatsbyImageData
+              }
             />
           </Grid>
         ))}

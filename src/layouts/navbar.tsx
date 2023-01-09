@@ -74,7 +74,11 @@ export default function DrawerAppBar(props: Props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", sm: "block" },
+              fontWeight: "bold",
+            }}
           >
             Mattia De Vivo
           </Typography>
@@ -85,7 +89,7 @@ export default function DrawerAppBar(props: Props) {
           >
             {navItems.map((item) => (
               <Box key={item.name} mx={marginX}>
-                <Link to={item.path}>
+                <Link to={item.path} color="inherit">
                   <Typography>{item.name}</Typography>
                 </Link>
               </Box>

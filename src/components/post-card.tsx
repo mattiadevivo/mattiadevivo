@@ -4,19 +4,30 @@ import {
   Button,
   CardActions,
   Typography,
+  CardMedia,
 } from "@mui/material";
 import { Link } from "gatsby";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 
 type Props = {
   title: string;
   date: string;
   link: string;
+  imageData: IGatsbyImageData;
 };
 
 const PostCard = (props: Props) => {
+  const image = getImage(props.imageData);
   return (
     <Card>
+      {image && (
+        <CardMedia
+          sx={{ padding: 1, display: "flex", justifyContent: "center" }}
+        >
+          <GatsbyImage image={image} alt={props.title + " image"} />
+        </CardMedia>
+      )}
       <CardContent>
         <Typography variant="h5" component="div">
           {props.title}

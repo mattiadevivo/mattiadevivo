@@ -4,10 +4,6 @@ import type { GatsbyConfig } from "gatsby";
 const env = dotenvConfig({
   path: `${process.env.NODE_ENV}.env`,
 });
-if (env.error != null) {
-  console.error("Error while loading env variables from file");
-  process.exit(1);
-}
 
 declare module "dotenv" {
   interface DotenvParseOutput {
@@ -55,8 +51,8 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-contentful",
       options: {
-        accessToken: env.parsed?.GATSBY_CONTENTFUL_ACCESS_TOKEN,
-        spaceId: env.parsed?.GATSBY_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
       },
     },
     "gatsby-plugin-image",

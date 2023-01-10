@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import PageLayout from "../../layouts/page-layout";
 import { Box, Chip, Container, Typography } from "@mui/material";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { MDXProvider } from "@mdx-js/react";
 
 const BlogPost = ({
   data,
@@ -41,7 +42,25 @@ const BlogPost = ({
             alt={`${data.mdx?.frontmatter?.title} photo`}
           />
         </Box>
-        {children}
+        <MDXProvider
+          components={{
+            pre: (props) => (
+              <pre
+                style={{
+                  maxWidth: "100%",
+                  overflowX: "auto",
+                  padding: "1em",
+                  background: "#ccc",
+                  whiteSpace: "pre-wrap",
+                }}
+              >
+                {props.children}
+              </pre>
+            ),
+          }}
+        >
+          {children}
+        </MDXProvider>
       </Container>
     </PageLayout>
   );
@@ -59,7 +78,7 @@ export const query = graphql`
         date(formatString: "DD/MM/YYYY")
         featuredImage {
           childImageSharp {
-            gatsbyImageData(formats: WEBP)
+            gatsbyImageData(layout: CONSTRAINED, formats: WEBP)
           }
           absolutePath
         }

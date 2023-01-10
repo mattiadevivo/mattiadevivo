@@ -18,7 +18,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "lint": "npx eslint --ext .ts,.tsx,.js,.jsx .",
+    "lint": "npx eslint --ext .ts,.tsx,.js,.jsx . --fix",
     "format": "npx prettier --write ."
   },
   "dependencies": {

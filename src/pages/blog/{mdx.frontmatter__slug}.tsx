@@ -6,7 +6,6 @@ import PageLayout from "../../layouts/page-layout";
 import { Box, Chip, Container, Typography } from "@mui/material";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { MDXProvider } from "@mdx-js/react";
-import Highlight, { defaultProps } from "prism-react-renderer";
 import CodeBlock from "../../components/code-block";
 
 const BlogPost = ({

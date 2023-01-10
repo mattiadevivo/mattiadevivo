@@ -1,9 +1,12 @@
+/* eslint-disable react/jsx-key */
 import * as React from "react";
 import Seo from "../../components/seo";
 import { graphql } from "gatsby";
 import PageLayout from "../../layouts/page-layout";
 import { Box, Chip, Container, Typography } from "@mui/material";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { MDXProvider } from "@mdx-js/react";
+import CodeBlock from "../../components/code-block";
 
 const BlogPost = ({
   data,
@@ -41,7 +44,13 @@ const BlogPost = ({
             alt={`${data.mdx?.frontmatter?.title} photo`}
           />
         </Box>
-        {children}
+        <MDXProvider
+          components={{
+            pre: CodeBlock,
+          }}
+        >
+          {children}
+        </MDXProvider>
       </Container>
     </PageLayout>
   );
@@ -59,7 +68,7 @@ export const query = graphql`
         date(formatString: "DD/MM/YYYY")
         featuredImage {
           childImageSharp {
-            gatsbyImageData(formats: WEBP)
+            gatsbyImageData(layout: CONSTRAINED, formats: WEBP)
           }
           absolutePath
         }

@@ -21,10 +21,15 @@ const Footer = (): JSX.Element => {
         <Link
           href="https://www.linkedin.com/in/mattia-de-vivo-281316157/"
           color="inherit"
+          sx={{ marginX: 1 }}
         >
           <LinkedInIcon />
         </Link>
-        <Link href="https://github.com/mattiadevivo" color="inherit">
+        <Link
+          href="https://github.com/mattiadevivo"
+          color="inherit"
+          sx={{ marginX: 1 }}
+        >
           <GitHubIcon />
         </Link>
       </Grid>

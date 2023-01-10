@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import * as React from "react";
 import Seo from "../../components/seo";
 import { graphql } from "gatsby";
@@ -5,6 +6,8 @@ import PageLayout from "../../layouts/page-layout";
 import { Box, Chip, Container, Typography } from "@mui/material";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { MDXProvider } from "@mdx-js/react";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import CodeBlock from "../../components/code-block";
 
 const BlogPost = ({
   data,
@@ -44,19 +47,7 @@ const BlogPost = ({
         </Box>
         <MDXProvider
           components={{
-            pre: (props) => (
-              <pre
-                style={{
-                  maxWidth: "100%",
-                  overflowX: "auto",
-                  padding: "1em",
-                  background: "#ccc",
-                  whiteSpace: "pre-wrap",
-                }}
-              >
-                {props.children}
-              </pre>
-            ),
+            pre: CodeBlock,
           }}
         >
           {children}

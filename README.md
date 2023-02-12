@@ -1,112 +1,17 @@
-# Installation
 
-```bash
-# install Gatsby cli
-npm install -g gatsby-cli
-# create Gatsby project with TS
-npm init gatsby -ts
-```
+## 🌐 Socials:
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/mattia-de-vivo-281316157) 
 
-## Env Vars
+# 💻 Tech Stack:
+![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Solidity](https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) ![Google Cloud](https://img.shields.io/badge/Google%20Cloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white) ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7) ![Gatsby](https://img.shields.io/badge/Gatsby-%23663399.svg?style=for-the-badge&logo=gatsby&logoColor=white) ![Fastify](https://img.shields.io/badge/fastify-%23000000.svg?style=for-the-badge&logo=fastify&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=material-ui&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+# 📊 GitHub Stats:
+![](https://github-readme-stats.vercel.app/api?username=mattiadevivo&theme=react&hide_border=true&include_all_commits=false&count_private=true)<br/>
+![](https://github-readme-streak-stats.herokuapp.com/?user=mattiadevivo&theme=react&hide_border=true)<br/>
 
-Gatsby has built-in support for loading environment variables into the browser and Functions.
 
-- `gatsby develop` command will setup `NODE_ENV` to `development`
-- For builds `NODE_ENV` will be set to `prodiction`
+### ✍️ Random Dev Quote
+![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
-See [gatsby-config.ts](./gatsby-config.ts).
 
-## References
 
-[Gatsby + TS](https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/)ß
-[Astro Boilerplate projects](https://github.com/ixartz/Astro-boilerplate)
-[https://blog.webdevsimplified.com/2022-07/react-folder-structure/]
-
-## Project structure
-
-Inside `src` folder:
-
-- `assets` folder is used for all the stuff which is not js/ts code
-- `context` folder is used for contexts (like AuthContext)
-- `data` used for json, constants
-- `layouts` folder used for components that are reused in other components
-- `lib` folder is used to collect 3rd paty apis
-- `services` folder is used to collect api calls
-
-## ESlint + Prettier
-
-Generate ESlint config by using:
-```bash
-npm init @eslint/config
-```
-Install Prettier:
-```bash
-npm install --save-dev prettier
-```
-
-Install eslint-config-prettier:
-```bash
-npm install --save-dev eslint-config-prettier
-```
-Then add `"prettier"` to the "extends" array in your `.eslintrc.*` file. Make sure to put it last, so it gets the chance to override other configs:
-```json
-{
-  "extends": [
-    "some-other-config-you-use",
-    "prettier"
-  ]
-}
-```
-
-## MUI
-
-use `sx` prop in components to override style of a single component.
-
-### Theming tools
-
-[mui-theme-generator](https://bareynol.github.io/mui-theme-creator/)
-[Material Palette generator](https://material.io/inline-tools/color/)
-
-## GraphQL
-
-Inside the GraphQL data layer, information is stored in objects called nodes. A node is the smallest form unit of data in the data layer. Different source plugins create different types of nodes, each of which have their own properties. 
-
-A **transformer plugin** converts nodes from one type to another. For example, the gatsby-plugin-mdx plugin transforms File nodes that have the .mdx extension into MDX nodes, which have a different set of fields that you can query using GraphQL. 
-
-## File System Route API
-
-To create a *collectionroute*:
-- decide type of node you want to create pages from
-- Choose which field on that node to use in the route (the URL) for your pages.
-- Create a new page component in your src/pages directory using the following naming convention: `{nodeType.field}.js`.
-
-## Use autogenerated GraphQL Query Types 
-
-Ensure GraphQL types are generated in `gatsby-config.ts`:
-```ts
-module.exports = {
- graphqlTypegen: true,
-}
-```
-
-This will generate `gatsby-types.d.ts` in `src` folder every time `npm run develop` is run.
-
-Include `gatsby-types.d.ts` in the list of patterns to be checked in `tsconfig.json` file:
-```json
-  "include": [
-    "./src/**/*",
-    "./gatsby-node.ts",
-    "./gatsby-config.ts",
-    "./plugins/**/*",
-    "./src/gatsby-types.d.ts"
-  ]
-```
-
-## TodoList
-
-Start from here
-https://www.gatsbyjs.com/docs/tutorial/part-6/
-https://rogulski.it/blog/gatsby-contentful-markdown-jsx-component/
-
-- GitHub workflow for deploy
-- Docker container
+<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->

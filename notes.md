@@ -12,7 +12,7 @@ npm init gatsby -ts
 Gatsby has built-in support for loading environment variables into the browser and Functions.
 
 - `gatsby develop` command will setup `NODE_ENV` to `development`
-- For builds `NODE_ENV` will be set to `prodiction`
+- For builds `NODE_ENV` will be set to `production`
 
 See [gatsby-config.ts](./gatsby-config.ts).
 

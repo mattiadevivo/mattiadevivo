@@ -22,6 +22,7 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.16.2",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@fontsource/roboto": "^4.5.8",

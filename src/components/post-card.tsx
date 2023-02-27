@@ -38,7 +38,7 @@ const PostCard = (props: Props) => {
       </CardContent>
       <CardActions>
         <Link to={props.link}>
-          <Button size="small">Learn More</Button>
+          <Button size="small">{props.title}</Button>
         </Link>
       </CardActions>
     </Card>

@@ -2,8 +2,32 @@ import { Box, Grid, Link, Stack, Typography } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { useStaticQuery, graphql } from "gatsby";
-import React from "react";
+import {
+  documentToReactComponents,
+  Options,
+} from "@contentful/rich-text-react-renderer";
+
+import React, { ReactNode } from "react";
+
+const options: Options = {
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (node, children: ReactNode) => (
+      <Box sx={{ fontWeight: "bold" }}>
+        <Typography>{children}</Typography>
+      </Box>
+      //<Typography>{children}</Typography>
+    ),
+  },
+  renderMark: {
+    [MARKS.BOLD]: (node: ReactNode) => (
+      <Box sx={{ fontWeight: "bold" }}>
+        <Typography>{node}</Typography>
+      </Box>
+    ),
+  },
+};
 
 const AboutSection = () => {
   const data = useStaticQuery<Queries.personQuery>(
@@ -15,7 +39,7 @@ const AboutSection = () => {
               address
               email
               about {
-                about
+                raw
               }
               image {
                 gatsbyImageData(
@@ -57,7 +81,10 @@ const AboutSection = () => {
           <Typography variant="h3">Hi There! 👋</Typography>
         </Grid>
       </Grid>
-      <Typography>{person.about?.about}</Typography>
+      {documentToReactComponents(
+        JSON.parse(person.about?.raw as string),
+        options
+      )}
       <Box component="div" display="flex" alignItems="center">
         <Typography variant="h5" component="span">
           Follow me on:

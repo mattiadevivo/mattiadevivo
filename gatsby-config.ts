@@ -1,7 +1,7 @@
 import { config as dotenvConfig } from "dotenv";
 import type { GatsbyConfig } from "gatsby";
 
-const env = dotenvConfig({
+dotenvConfig({
   path: `${process.env.NODE_ENV}.env`,
 });
 
@@ -18,7 +18,7 @@ const config: GatsbyConfig = {
     title: "Mattia De Vivo",
     siteUrl: "https://mattiadevivo.dev",
     description:
-      "Mattia De Vivo is software engineer skilled in cloud, microservices and DevOps.",
+      "Mattia De Vivo is a software engineer skilled in public clouds (AWS, GCP), microservices and DevOps activities.",
     keywords: [
       "mattia de vivo",
       "mattia",
@@ -51,8 +51,8 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-contentful",
       options: {
-        accessToken: env.parsed?.GATSBY_CONTENTFUL_ACCESS_TOKEN,
-        spaceId: env.parsed?.GATSBY_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
       },
     },
     "gatsby-plugin-image",

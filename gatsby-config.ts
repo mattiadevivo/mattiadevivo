@@ -62,7 +62,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/assets/images/icon.png",
+        icon: `${__dirname}/static/images/icon.png`,
         start_url: "/",
         name: "mattiadevivo",
         short_name: "mdevivo",
@@ -77,7 +77,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/assets/images/",
+        path: `${__dirname}/static/images/`,
       },
       __key: "images",
     },

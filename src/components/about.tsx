@@ -1,7 +1,12 @@
 import { Box, Grid, Link, Stack, Typography } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
+import {
+  GatsbyImage,
+  getImage,
+  getImageData,
+  IGatsbyImageData,
+} from "gatsby-plugin-image";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { useStaticQuery, graphql } from "gatsby";
 import {
@@ -112,6 +117,20 @@ const AboutSection = () => {
           <GitHubIcon />
         </Link>
       </Box>
+      <Stack
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+        spacing={{ xs: 1, sm: 2, md: 4 }}
+        my={2}
+      >
+        <img
+          src="/images/aws-certified-solutions-architect-associate.png"
+          alt="aws certified solutions architect associate badge"
+          height="150px"
+          width="150px"
+        />
+      </Stack>
     </Stack>
   );
 };

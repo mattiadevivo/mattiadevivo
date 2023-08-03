@@ -1,0 +1,13 @@
+version: "3"
+services:
+  app:
+    image: mattiadevivo
+    container_name: mattiadevivo
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - contentful_access_token=
+        - contentful_space_id=
+    ports:
+      - 127.0.0.1:8080:80

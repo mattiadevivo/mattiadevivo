@@ -1,0 +1,10 @@
+.git
+node_modules
+*.env
+.eslint*
+.prettier*
+.vscode
+README.md
+Dockerfile
+public
+.cache

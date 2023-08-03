@@ -16,5 +16,5 @@ jobs:
           GATSBY_CONTENTFUL_SPACE_ID: ${{ secrets.GATSBY_CONTENTFUL_SPACE_ID }}
         with:
           access-token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
-          deploy-branch: master
+          deploy-branch: gh-pages
           git-config-email: mattiadevivo@gmail.com

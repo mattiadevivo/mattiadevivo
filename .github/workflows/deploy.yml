@@ -14,6 +14,7 @@ jobs:
         env:
           GATSBY_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.GATSBY_CONTENTFUL_ACCESS_TOKEN }}
           GATSBY_CONTENTFUL_SPACE_ID: ${{ secrets.GATSBY_CONTENTFUL_SPACE_ID }}
+        with:
           access-token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
           deploy-branch: master
           git-config-email: mattiadevivo@gmail.com

@@ -33,7 +33,13 @@ const BlogIndex = () => {
         <Typography variant="h4" marginY={3} fontWeight="bold">
           Blog Posts
         </Typography>
-        <Grid container direction="row" spacing={1} marginTop={3}>
+        <Grid
+          container
+          direction="row"
+          spacing={1}
+          marginTop={3}
+          justifyItems={"center"}
+        >
           {data.allMdx.nodes.map((node) => (
             <Grid key={node.id} item xs={12} sm={4}>
               <PostCard

@@ -20,7 +20,12 @@ type Props = {
 const PostCard = (props: Props) => {
   const image = getImage(props.imageData);
   return (
-    <Card elevation={6}>
+    <Card
+      elevation={6}
+      sx={{
+        alignSelf: "stretch",
+      }}
+    >
       {image && (
         <CardMedia
           sx={{ padding: 1, display: "flex", justifyContent: "center" }}

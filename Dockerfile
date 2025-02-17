@@ -1,20 +1,12 @@
-FROM node:18-alpine AS build
-
-ARG contentful_access_token
-ARG contentful_space_id
+FROM node:22-alpine AS build
 
 WORKDIR /app
 COPY . .
 
-RUN npm update
-RUN npm ci
+RUN pnpm install
+RUN pnpm build
 
-ENV GATSBY_CONTENTFUL_ACCESS_TOKEN ${contentful_access_token}
-ENV GATSBY_CONTENTFUL_SPACE_ID ${contentful_space_id}
-
-RUN npm run build
-
-FROM nginx:1.18-alpine AS deploy
+FROM nginx:1.27.4-alpine AS deploy
 
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*

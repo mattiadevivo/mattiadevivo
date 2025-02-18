@@ -9,7 +9,6 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://mattiadevivo.dev",
   integrations: [mdx(), sitemap()],
-
   vite: {
     plugins: [tailwindcss()],
   },

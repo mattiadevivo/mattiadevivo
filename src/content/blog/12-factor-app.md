@@ -1,10 +1,8 @@
 ---
-author: Mattia De Vivo
-date: "2024-07-26"
-title: 12 key principles to consider when developing an application
-slug: 12-factor-app
-featuredImage: ../../../static/images/12-factor-app.png
-description: You should keep in mind those pillars before developing your application.
+title: "12 factor app"
+description: "You should keep in mind those pillars before developing your application."
+pubDate: "2024-07-26"
+image: "/12-factor-app.png"
 keywords:
   [
     software development,

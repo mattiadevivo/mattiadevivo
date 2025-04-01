@@ -1,7 +1,7 @@
 ---
 title: "Docker - What's behind the scenes in Linux?"
 description: "Here are the linux features that enabled the development of Docker."
-pubDate: "2025-03-05"
+pubDate: "2025-04-01"
 image: "/docker.png"
 keywords: [
     docker,

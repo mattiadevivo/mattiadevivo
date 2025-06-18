@@ -2,7 +2,7 @@
 title: "12 factor app"
 description: "You should keep in mind those pillars before developing your application."
 pubDate: "2024-07-26"
-image: "/12-factor-app.png"
+image: "/blog/12-factor-app.png"
 keywords:
   [
     software development,

@@ -1,8 +1,8 @@
 ---
-title: ""
-description: "Building TVTrash: A Technical Deep Dive into an Open-Source Waste Management Solution"
+title: "trevisorifiuti.top"
+description: "Building trevisorifiuti.top: A Technical Deep Dive into an Open-Source Waste Management Reminder"
 pubDate: "2026-01-10"
-image: "/blog/tvtrash.png"
+image: "/blog/trevisorifiuti.top.png"
 keywords:
   [
     fullstack development,
@@ -12,26 +12,28 @@ keywords:
     python,
     telegram,
     waste management,
-    open source
+    open source,
+    automation,
   ]
 ---
-# Building TVTrash: A Technical Deep Dive into an Open-Source Waste Management Solution
 
-Living in Treviso, Italy, a small city where waste is collected door-to-door and each municipality has its own waste collection schedule, I found myself constantly forgetting which waste bins to put out each day. The local waste management company provides a paper calendar and (IMO not so user-friendly) calendar on their website, but checking it daily felt tedious. That's when I decided to build TVTrash, a web application that automatically notifies residents via Telegram about upcoming waste collection days.
+# Building trevisorifiuti.top: A Technical Deep Dive into an Open-Source Waste Management Reminder
 
-Today, I'm excited to share that the project is now open-source and available at [github.com/mattiadevivo/TVTrash](https://github.com/mattiadevivo/TVTrash). In this post, I'll walk through the technical architecture and design decisions behind the project.
+Living in Treviso, a small Italian city where waste is collected door-to-door and each municipality has its own waste collection schedule, I often forgot which bins to put out on which days. Although the local waste management company provides a paper calendar and a website calendar, I found the latter not very user-friendly. Checking it daily became tedious, especially for a busy software developer like myself. That's when I decided to create trevisorifiuti.top, a web application that automatically notifies residents via Telegram about upcoming waste collection days.
+
+Today, I'm excited to share that the project is now open-source and available at [github.com/mattiadevivo/trevisorifiuti.top](https://github.com/mattiadevivo/trevisorifiuti.top). In this post, I'll walk through the technical architecture and design decisions behind the project.
 
 ## The Problem
 
-The Treviso area has a complex waste collection system with different schedules for different municipalities and waste types (organic, paper, plastic, glass, etc.). Residents need to check the official website regularly (or the paper calenda) to know which bins to prepare but we all know, our life is full of distractions and it's easy to miss collections.
+The Treviso area has a complex waste collection system with different schedules for different municipalities and waste types (organic, paper, plastic, glass, etc.). Residents need to check the official website regularly (or the paper calendar) to know which bins to prepare but we all know, our life is full of distractions and it's easy to miss collections.
 
 ## The Solution Architecture
 
-TVTrash is built as a monorepo containing four main components:
+trevisorifiuti.top is built as a monorepo containing four main components:
 
 ### 1. Frontend: A Responsive SolidJS Application
 
-I chose [SolidJS](https://solidjs.com) for the frontend because it promises excellent performance and because it has a reactive model that is easy to use and understand, and honestly because I just wanted to try it out.The application provides:
+I chose [SolidJS](https://solidjs.com) for the frontend because it promises excellent performance and because it has a reactive model that is easy to use and understand, and honestly because I just wanted to try it out instead of choosing React by default. The application provides:
 
 - An intuitive interface to view the waste collection calendar
 - Municipality selection so you no longer have to scroll through the entire calendar in the official website if you live in a different municipality
@@ -48,43 +50,37 @@ The heart of the system is the Python scraper that automatically fetches waste c
 - Normalizes data across different municipalities
 - Updates the Supabase database.
 
-<br/>
-
 **Implementation Details:**
+
 - Python with requests and BeautifulSoup for web scraping
 - Scheduled execution to ensure up-to-date data and avoid manual updates
 - Error handling and logging for reliable operation
 - Data validation to ensure accuracy before database updates
-
-<br/>
 
 ### 3. Supabase: Backend and Database Infrastructure
 
 [Supabase](https://supabase.com) serves as the backend platform, providing:
 
 **Database Schema:**
+
 - Tables for municipalities, waste types, and collection schedules
 - User preferences and Telegram chat configurations
 - Efficient indexing for fast calendar queries
 
-<br/>
-
 **Edge Functions:**
+
 - Notification scheduling logic
 - Telegram bot webhook handling
 - API endpoints for the frontend
 
-<br/>
-
 Using Supabase allowed me to focus on business logic rather than backend infrastructure management. The PostgreSQL database provides powerful querying capabilities, while edge functions handle the notification workflow.
 
 **Database Design Highlights:**
+
 - Normalized schema to avoid data duplication
 - Efficient indexes on date and municipality fields
 - Row-level security for user data protection
 - Database functions to reuse common queries between edge functions and frontend
-
-<br/>
 
 ### 4. Infrastructure: Terraform for Repeatable Deployments
 
@@ -129,7 +125,7 @@ Handling user data, particularly Telegram chat IDs, required careful considerati
 
 ## Open Source and Community
 
-By making TVTrash open-source, I hope to:
+By making trevisorifiuti.top open-source, I hope to:
 
 - Allow other municipalities to adapt the system for their needs
 - Receive contributions from the community
@@ -148,19 +144,19 @@ Some features I'm considering for future development:
 
 If you're interested in running your own instance or contributing to the project:
 
-1. Clone the repository: `git clone https://github.com/mattiadevivo/TVTrash.git`
+1. Clone the repository: `git clone https://github.com/mattiadevivo/trevisorifiuti.top.git`
 2. Check the README for setup instructions
 3. Each component has its own documentation in its respective directory
 4. Issues and pull requests are welcome!
 
 ## Conclusion
 
-Building TVTrash taught me valuable lessons about civic technology, the importance of reliable automation, and the power of open-source collaboration. What started as a personal inconvenience became a tool that hundreds of residents now use daily.
+Building trevisorifiuti.top was fun, building a project that is actually useful and improve people's life (or at least mine) it's rewarding.
 
 The project demonstrates how modern web technologies like SolidJS, Supabase, and Terraform can be combined to create practical, user-focused applications. By open-sourcing the code, I hope others can learn from this approach or adapt it for their own communities.
 
-If you live in the Treviso area, try TVTrash at [trevisorifiuti.top](https://trevisorifiuti.top). If you're a developer interested in civic tech or any of the technologies used, check out the [GitHub repository](https://github.com/mattiadevivo/TVTrash) and consider contributing!
+If you live in the Treviso area, try trevisorifiuti.top at [trevisorifiuti.top](https://trevisorifiuti.top). If you're a developer interested in any of the technologies used, check out the [GitHub repository](https://github.com/mattiadevivo/trevisorifiuti.top) and consider contributing!
 
 ---
 
-*Have questions or suggestions? Feel free to open an issue on GitHub or reach out directly. Let's make waste management a little easier, one notification at a time.*
+_Have questions or suggestions? Feel free to open an issue on GitHub or reach out directly. Let's make waste management a little easier, one notification at a time._

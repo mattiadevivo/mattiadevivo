@@ -14,7 +14,7 @@ keywords:
   ]
 ---
 
-Claude Code is more than just an AI editor integration—it's a complete development environment that learns your patterns, automates your workflows, and scales with your team. But unlocking its full power requires understanding a few key concepts.
+Claude Code is more than just an AI editor integration, it's a complete development environment that learns your patterns, automates your workflows, and scales with your team. But unlocking its full power requires understanding a few key concepts.
 
 ## Smart Prompting: Build a Learning Path
 
@@ -30,7 +30,7 @@ Analyze this codebase and give me a structured overview:
 - Important configuration files
 ```
 
-Then proceed with **layered prompts**—each one building on the previous answer:
+Then proceed with **layered prompts** each one building on the previous answer:
 
 ```
 # Layer 1: Architecture
@@ -47,9 +47,10 @@ This creates a **strong learning path**, where Claude develops deeper understand
 
 ## Context Management: CLAUDE.md is Your Contract
 
-Context gets reset across conversations—but you can preserve it.
+Context gets reset across conversations but you can preserve it.
 
 **`CLAUDE.md`** is a single file that defines how Claude should work on your project. Use it to encode:
+
 - Build and test commands
 - Coding conventions and style
 - Project-specific architecture patterns
@@ -67,16 +68,19 @@ Claude supports a **three-tier hierarchy**:
 # CLAUDE.md - Development Contract
 
 ## Core
+
 - Build: `npm run build`
 - Test: `npm test`
 - Use TypeScript for new code
 
 ## Key Files
+
 - @src/utils/database.ts - Database abstraction
 - @tests/fixtures/ - Test data
 - @docs/architecture.md - System design
 
 ## Conventions
+
 - Functional programming preferred
 - Error handling in all async functions
 - Add security comments for auth/validation
@@ -89,6 +93,7 @@ If Claude breaks a convention, use `#` to add a quick correction that sticks to 
 Use `@filename` to tell Claude, "You should already know about this file." It goes into persistent context so Claude doesn't repeatedly ask for content it should remember.
 
 Best for frequently referenced files:
+
 - Database schemas
 - API client code
 - Utility functions
@@ -101,6 +106,7 @@ Best for frequently referenced files:
 Two different modes for different jobs:
 
 **Planning Mode** → Big-picture coordination
+
 - Good for: Multi-file features, refactors, migrations
 - Behavior: Reads more files, creates a step-by-step plan, waits for approval
 - Output: Implementation plan, affected files, rationale, risk assessment
@@ -108,6 +114,7 @@ Two different modes for different jobs:
 - **How to trigger:** Toggle in the editor (typically `Shift+Tab` or via UI button), or start your prompt with "Plan:"
 
 **Thinking Modes** → Deeper reasoning on focused problems
+
 - **Think** - Light analysis
 - **Think more** - Examine alternatives
 - **Think a lot** - Thorough multi-angle analysis
@@ -125,14 +132,14 @@ Two different modes for different jobs:
 
 ```
 # Planning Mode (via toggle or "Plan:" prefix)
-Plan: Extract a shared button component and migrate both header 
+Plan: Extract a shared button component and migrate both header
 and footer to use it. Show affected files and implementation order.
 ```
 
 ```
 # Thinking Mode (via keyword prefix)
-Ultrathink: Our debounce fails in Safari but not Chrome. 
-Consider event timing, requestAnimationFrame behavior, and 
+Ultrathink: Our debounce fails in Safari but not Chrome.
+Consider event timing, requestAnimationFrame behavior, and
 Safari's specific JS event handling quirks. Why?
 ```
 
@@ -154,9 +161,11 @@ Create `.claude/<command-name>.md` with a template. Use `$ARGUMENTS` for dynamic
 
 ```markdown
 # generate_tests.md
+
 Write comprehensive unit tests for: $ARGUMENTS
 
 **Requirements:**
+
 - Use pytest
 - Create `<module>_test.py` in tests/
 - Cover happy path, edge cases, errors
@@ -193,7 +202,7 @@ Call a sub-agent explicitly in your prompt, or let Claude choose based on task t
 
 ### MCP (Model Context Protocol)
 
-Connect Claude to external tools and data sources—databases, APIs, Figma, Jira, etc.
+Connect Claude to external tools and datasources, databases, APIs, Figma, Jira, etc.
 
 ```bash
 # Local tool (runs on your machine)
@@ -218,6 +227,7 @@ claude /install-github-app
 ```
 
 Now Claude can:
+
 - Respond to `@claude` mentions in issues and PRs
 - Post automatic reviews on pull requests
 - Suggest diffs right in the conversation
@@ -243,6 +253,7 @@ async for msg in query(
 ```
 
 Use cases:
+
 - Pre-commit hooks to catch issues
 - CI/CD jobs to review PRs
 - Local scripts to check for architectural smells
@@ -255,9 +266,11 @@ Use cases:
 Use a two-tier structure:
 
 **Tier 1 (Contract):** 10–20 lines
+
 - Non-negotiables: build commands, error-handling norms, architectural invariants
 
 **Tier 2 (Pointers):** `@` references to detailed docs
+
 - Only link what Claude needs frequently
 - Reduces token burn, improves consistency
 

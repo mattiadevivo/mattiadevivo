@@ -2,6 +2,7 @@
 title: "Mastering Claude Code: A Complete Guide"
 description: "Unlock the full potential of Claude Code with smart prompting, context management, automation, and advanced features."
 pubDate: "2026-02-05"
+image: "/blog/claude-code-guide.png"
 keywords:
   [
     claude code,
@@ -56,9 +57,9 @@ Context gets reset across conversations—but you can preserve it.
 
 Claude supports a **three-tier hierarchy**:
 
-1. **Global** `~/.claude/CLAUDE.md` — Your universal rules (TypeScript, testing standards, security mindset)
-2. **Project** `.claude/CLAUDE.md` — Team conventions (shared patterns, frameworks)
-3. **Local** `.claude/CLAUDE.md` — Personal customizations (not committed)
+1. **Global** `~/.claude/CLAUDE.md` - Your universal rules (TypeScript, testing standards, security mindset)
+2. **Project** `.claude/CLAUDE.md` - Team conventions (shared patterns, frameworks)
+3. **Local** `.claude/CLAUDE.md` - Personal customizations (not committed)
 
 **Pro tip:** Keep it short. Use `@` syntax to reference specific files instead of copying details:
 
@@ -71,9 +72,9 @@ Claude supports a **three-tier hierarchy**:
 - Use TypeScript for new code
 
 ## Key Files
-- @src/utils/database.ts — Database abstraction
-- @tests/fixtures/ — Test data
-- @docs/architecture.md — System design
+- @src/utils/database.ts - Database abstraction
+- @tests/fixtures/ - Test data
+- @docs/architecture.md - System design
 
 ## Conventions
 - Functional programming preferred
@@ -107,11 +108,11 @@ Two different modes for different jobs:
 - **How to trigger:** Toggle in the editor (typically `Shift+Tab` or via UI button), or start your prompt with "Plan:"
 
 **Thinking Modes** → Deeper reasoning on focused problems
-- **Think** — Light analysis
-- **Think more** — Examine alternatives
-- **Think a lot** — Thorough multi-angle analysis
-- **Think longer** — Extended reasoning for tricky problems
-- **Ultrathink** — Maximum depth (algorithms, design trade-offs)
+- **Think** - Light analysis
+- **Think more** - Examine alternatives
+- **Think a lot** - Thorough multi-angle analysis
+- **Think longer** - Extended reasoning for tricky problems
+- **Ultrathink** - Maximum depth (algorithms, design trade-offs)
 - Good for: Debugging, performance tuning, nuanced decisions
 - Use when: You're stuck on a specific problem
 - **How to trigger:** Start your prompt with the keyword, e.g.:
@@ -139,9 +140,9 @@ Safari's specific JS event handling quirks. Why?
 
 Keep conversations on track:
 
-- **`/clear`** — Reset completely. Start fresh on a new topic.
-- **`/compact`** — Summarize a 50-message conversation into essential decisions. Useful after long implementation sessions.
-- **`Escape`** — Interrupt generation. Press twice to go back to a previous message. Use when conversation drifts.
+- **`/clear`** - Reset completely. Start fresh on a new topic.
+- **`/compact`** - Summarize a 50-message conversation into essential decisions. Useful after long implementation sessions.
+- **`Escape`** - Interrupt generation. Press twice to go back to a previous message. Use when conversation drifts.
 
 ## Automation: Commands and Sub-Agents
 
@@ -164,7 +165,7 @@ Write comprehensive unit tests for: $ARGUMENTS
 After writing, print: "Finished tests for $ARGUMENTS"
 ```
 
-Now run: `claude /generate_tests src/api.py` — and Claude handles the details.
+Now run: `claude /generate_tests src/api.py` - and Claude handles the details.
 
 Name commands by outcome: `/stabilize-tests`, `/document-api`, `/audit-security`. Not `/run-formatter`.
 
@@ -313,7 +314,7 @@ Configure in `.claude/settings.json`:
 
 1. **Encode your standards** in `CLAUDE.md`
 2. **Reference key files** with `@` to build persistent context
-3. **Use structured prompts** — overview, then layered deep dives
+3. **Use structured prompts** - overview, then layered deep dives
 4. **Automate repetitive tasks** with commands and sub-agents
 5. **Connect external systems** via MCP
 6. **Monitor costs** regularly

@@ -100,6 +100,19 @@ p {
 .prose p {
   margin-bottom: 2em;
 }
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-bottom: 2em;
+}
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+  margin-bottom: 2em;
+}
+.prose li {
+  margin-bottom: 0.5em;
+}
 textarea {
   width: 100%;
   font-size: 16px;

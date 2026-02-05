@@ -12,9 +12,21 @@ keywords:
   ]
 ---
 
-1. **Codebase** - each app should have its own codebase, if there's common code shared between multiple apps this MUST BE a library included via a _dependency manager_. Each app has only one codebase but multiple deploys (dev, staging, prod).
-2. **Dependencies** - dependencies must be **explicitely declared and isolated**, in Python for example you can use `pip` in order to manage depedencies and `virtualenv` for isolation. It is better to use a dependency manager that creates/uses **lockfiles** (like [Poetry](https://python-poetry.org/)) since they allow repeatable and deterministic installations (you can be sure that dependencies are exactly because of the hashes being saved in the lockfile.)
-3. **Config** - **config and code** must be separated, no costants as config. Code MUST NOT contain constant values that are used as configuration depending on the environment.
+_If your app doesn't follow these principles, you're probably making your future self's life harder._
+
+Early in my career, I kept running into the same problems: "works on my machine" bugs, painful deployments, config values scattered across the codebase. Then I discovered the [12-factor app methodology](https://12factor.net/) and suddenly a lot of those headaches had well-known solutions. These twelve principles aren't new, but I still see teams ignoring them, so here's my take on each one.
+
+## 1. Codebase
+
+Each app should have its own codebase. If there's common code shared between multiple apps, that code should be a library included via a dependency manager. One codebase, many deploys (dev, staging, prod).
+
+## 2. Dependencies
+
+Dependencies must be **explicitly declared and isolated**. In Python for example you can use `pip` for dependency management and `virtualenv` for isolation. I'd recommend using a tool that creates **lockfiles** (like [Poetry](https://python-poetry.org/)). They guarantee repeatable, deterministic installations thanks to the hashes saved in the lockfile.
+
+## 3. Config
+
+This is one I see violated constantly. **Config and code must be separated**, no constants as config. Your code should never contain hardcoded values that change between environments.
 
 ```ts
 // DO NOT DO THIS
@@ -33,7 +45,7 @@ switch (process.env.NODE_ENV) {
 const username = process.env.USERNAME;
 ```
 
-A good way to properly store configurations is to have a `config.ts` file where to collect all the configuration keys.
+A good pattern is to collect all configuration keys in a single `config.ts` file:
 
 ```ts
 const config = {
@@ -41,30 +53,50 @@ const config = {
 };
 ```
 
-4. **Backing service** - a backing services include any service the app consumes over the network as part of its normal operation like _databases, queue, SMTP services, caching systems, ..._. The app should be able to switch from a local instance of the db to a thirdy party service without the need to change the code but only by changing the **configuration**.
+## 4. Backing Services
 
-5. **Build, release, run** - separate strictly build, release and run operations. Each release should have a unique identifier like a timestamp `2011-04-06-20:32:17` or incrementing number `v0.0.1`
+Any service your app consumes over the network (databases, queues, SMTP, caches) should be treated as an attached resource. You should be able to swap a local database for a managed cloud one by changing **configuration only**, not code.
 
-6. **Processes** - app must be executed as a **stateless** process, no essential data must be stored inside memory or filesystem but rather on exetrnal stateful services like _databases_, this because there could be more than one instance of the app and because, even when only one process replica is up, a restart or crash could wipe all the filesystem and memory data.
+## 5. Build, Release, Run
 
-7. **Port binding** - each app must expose itself in a _self-contained way_ by including a web server that makes it available through a **PORT**, this because each app must be a _backing service_ of another app, addressable via its config with the app's _url and port_.
+Strictly separate build, release, and run stages. Each release should have a unique identifier like a timestamp (`2011-04-06-20:32:17`) or a version number (`v0.0.1`). This makes rollbacks straightforward and auditing easy.
 
-8. **Concurrency** - in order to be able to make the application scaling we need to separate its workloads into multiple _processes_, for instance we could divide HTTP requests (handled by a web process) and long-running background tasks by a worker process. This way, each process can be scaled indipendently from the others. You should not daemonize your app but rather execute it as a normal process whose execution is managed by the system's process.
+## 6. Processes
 
-9. **Disposability** - The application must be disposable, as its processes can be started or stopped at any moment, leading to easy hot-reload during development and quick deployment in production when changing release or configuration. The _startup time_ should be as low as possible, and every **SIGTERM** signal should be handled to properly close all connections with backing services after completing pending operations. This is particularly useful in modern deployment environments such as Kubernetes, where container shutdown is triggered by sending a SIGTERM signal to the container's main process, and where the application can be replicated horizontally under heavy load conditions: the lower the startup time, the faster new requests can be handled.
+Your app should run as **stateless processes**. Don't store essential data in memory or the filesystem, use external stateful services like databases instead. This matters because you might have multiple instances running, and even with a single process, a restart or crash wipes everything in memory and on the local filesystem.
 
-10. **Dev/prod parity** - keep all the environments as similar as possible, this way:
+## 7. Port Binding
 
-    - developers will be faster because they'll spend less time in changing configuration between environments or setting up their development environments. Onboarding of new devs will be easier as well.
-    - both devs and ops can handle deployments and their configuration
-    - ther are no differences in tech stacks = no unexpected behaviours, no changes in load capabilities.
+Each app should expose itself in a self-contained way by binding to a **port**. This makes every app a potential backing service for another app, addressable via URL and port in the config.
 
-    Especially in the past, when developing locally, developers used to opt for the lightweight version of a backend service (SQLite instead of PostgreSQL, for example), but nowadays most of the backends can be easily installed using **modern packaging systems** (homebrew, apt, ...) or containerised thanks to **Docker** to have not only a production-like environment, but also an isolated and repeatable one.
+## 8. Concurrency
 
-11. **Logs** - application logs are the stream of aggregated, time-ordered events collected from the output streams of all running processes and backing services. The application writes logs to `stdout`, this will then collected by using log routers (Fluentd for example) and the delivered to indexing and analysis systems like Splunk, ElasticSearch or cloud-vendor solutions like Google Cloud Logging.
+To scale your application, separate its workloads into multiple process types. For instance, HTTP requests can be handled by a web process while long-running background tasks go to a worker process. Each process type can then scale independently. Don't daemonize, let the OS process manager handle execution.
 
-12. **Admin processes** - whenever developers need to run admin processes (database migrations, running a console in order to execute arbitrary code, running one-time scripts) those need to be executed in an identical environment as the regular long-running processes of the app in order to preserve _dependency isolation_. They run against a release, using the same codebase and config as any process run against that release. Admin code must ship with application code to avoid synchronization issues.
+## 9. Disposability
 
-### Resources
+This one became much more relevant to me when I started working with Kubernetes. Your processes should start fast and shut down gracefully. Handle **SIGTERM** signals to close connections after completing pending work. The lower the startup time, the faster new replicas can absorb traffic during horizontal scaling.
 
-- [12 factor app](https://12factor.net/)
+## 10. Dev/Prod Parity
+
+Keep all environments as similar as possible. This means:
+
+- Developers spend less time fighting environment-specific bugs and onboarding is smoother
+- Both devs and ops can handle deployments confidently
+- No surprises from different tech stacks between environments
+
+In the past, developers used lightweight alternatives locally (SQLite instead of PostgreSQL). Nowadays, **Docker** makes it trivial to run production-like services locally: not just similar, but identical and isolated.
+
+## 11. Logs
+
+Treat logs as a stream of time-ordered events. Your app should write to `stdout`, nothing more. Let log routers (like Fluentd) collect and forward them to analysis systems like Splunk, Elasticsearch, or cloud-vendor solutions like Google Cloud Logging.
+
+## 12. Admin Processes
+
+Database migrations, one-time scripts, console sessions: all admin processes should run in the **same environment** as the regular app processes. Same codebase, same config, same dependencies. Admin code must ship with the application to avoid synchronization issues.
+
+## Final Thoughts
+
+These twelve principles might seem obvious once you know them, but I've seen plenty of production systems that violate half of them. If you're starting a new project or inheriting an existing one, running through this checklist is one of the highest-leverage things you can do.
+
+The full methodology is at [12factor.net](https://12factor.net/), it's a short read and well worth your time.

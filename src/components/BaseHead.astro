@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, GOOGLE_ANALYTICS_ID } from '../consts';
 
 interface Props {
 	title: string;
@@ -14,6 +14,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 ---
+
+<!-- Google Analytics -->
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
+<script is:inline define:vars={{ GOOGLE_ANALYTICS_ID }}>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+	gtag('config', GOOGLE_ANALYTICS_ID);
+</script>
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />

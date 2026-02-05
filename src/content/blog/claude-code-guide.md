@@ -104,6 +104,7 @@ Two different modes for different jobs:
 - Behavior: Reads more files, creates a step-by-step plan, waits for approval
 - Output: Implementation plan, affected files, rationale, risk assessment
 - Use when: You need a design review before committing to changes
+- **How to trigger:** Toggle in the editor (typically `Shift+Tab` or via UI button), or start your prompt with "Plan:"
 
 **Thinking Modes** → Deeper reasoning on focused problems
 - **Think** — Light analysis
@@ -113,6 +114,26 @@ Two different modes for different jobs:
 - **Ultrathink** — Maximum depth (algorithms, design trade-offs)
 - Good for: Debugging, performance tuning, nuanced decisions
 - Use when: You're stuck on a specific problem
+- **How to trigger:** Start your prompt with the keyword, e.g.:
+  - `Think: Why does this debounce fail in Safari?`
+  - `Think more: Compare these two algorithms for memory usage`
+  - `Think a lot: Analyze this race condition across all code paths`
+  - `Ultrathink: Design the optimal data structure for this use case`
+
+**Examples in practice:**
+
+```
+# Planning Mode (via toggle or "Plan:" prefix)
+Plan: Extract a shared button component and migrate both header 
+and footer to use it. Show affected files and implementation order.
+```
+
+```
+# Thinking Mode (via keyword prefix)
+Ultrathink: Our debounce fails in Safari but not Chrome. 
+Consider event timing, requestAnimationFrame behavior, and 
+Safari's specific JS event handling quirks. Why?
+```
 
 ### Flow Control: /clear, /compact, Escape
 

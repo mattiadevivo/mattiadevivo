@@ -17,146 +17,91 @@ keywords:
   ]
 ---
 
-# Building trevisorifiuti.top: A Technical Deep Dive into an Open-Source Waste Management Reminder
+_Sometimes the best side projects come from the most mundane problems._
 
-Living in Treviso, a small Italian city where waste is collected door-to-door and each municipality has its own waste collection schedule, I often forgot which bins to put out on which days. Although the local waste management company provides a paper calendar and a website calendar, I found the latter not very user-friendly. Checking it daily became tedious, especially for a busy software developer like myself. That's when I decided to create trevisorifiuti.top, a web application that automatically notifies residents via Telegram about upcoming waste collection days.
+Living in Treviso, a small Italian city where waste is collected door-to-door, I kept forgetting which bins to put out on which days. Each municipality has its own schedule, and while the local waste management company provides a paper calendar and a website, the latter is not exactly user-friendly. Checking it daily became tedious, especially for someone who'd rather automate things than remember them.
 
-Today, I'm excited to share that the project is now open-source and available at [github.com/mattiadevivo/trevisorifiuti.top](https://github.com/mattiadevivo/trevisorifiuti.top). In this post, I'll walk through the technical architecture and design decisions behind the project.
+So I built [trevisorifiuti.top](https://trevisorifiuti.top), a web app that sends Telegram notifications about upcoming waste collection days. Today it's open-source and available at [github.com/mattiadevivo/trevisorifiuti.top](https://github.com/mattiadevivo/trevisorifiuti.top). Here's how it works under the hood.
 
 ## The Problem
 
-The Treviso area has a complex waste collection system with different schedules for different municipalities and waste types (organic, paper, plastic, glass, etc.). Residents need to check the official website regularly (or the paper calendar) to know which bins to prepare but we all know, our life is full of distractions and it's easy to miss collections.
+The Treviso area has a surprisingly complex waste collection system: different schedules for different municipalities and waste types (organic, paper, plastic, glass, etc.). Residents need to check the official website regularly (or keep the paper calendar handy) to know which bins to prepare. But let's be honest, life is full of distractions and it's easy to miss a collection.
 
 ## The Solution Architecture
 
-trevisorifiuti.top is built as a monorepo containing four main components:
+trevisorifiuti.top is built as a monorepo with four main components.
 
-### 1. Frontend: A Responsive SolidJS Application
+### 1. Frontend: SolidJS
 
-I chose [SolidJS](https://solidjs.com) for the frontend because it promises excellent performance and because it has a reactive model that is easy to use and understand, and honestly because I just wanted to try it out instead of choosing React by default. The application provides:
+I chose [SolidJS](https://solidjs.com) for the frontend because of its excellent performance and intuitive reactive model, and honestly because I just wanted to try something other than React for once. The app provides:
 
-- An intuitive interface to view the waste collection calendar
-- Municipality selection so you no longer have to scroll through the entire calendar in the official website if you live in a different municipality
+- An intuitive calendar view for waste collection schedules
+- Municipality selection, so you don't have to scroll through the entire official calendar
 - Telegram bot configuration for automated notifications
 
-The frontend is deployed on GitHub Pages and communicates with the Supabase backend via REST APIs.
+It's deployed on GitHub Pages and talks to Supabase via REST APIs.
 
-### 2. Scraper: Automated Data Collection with Python
+### 2. Scraper: Python
 
-The heart of the system is the Python scraper that automatically fetches waste collection data from the official website of the local waste management company. This component:
+The heart of the system is a Python scraper that fetches waste collection data from the official website. It:
 
-- Runs on a scheduled basis (once a week) as a GitHub Workflow to keep data fresh
-- Parses the official waste collection calendars
-- Normalizes data across different municipalities
-- Updates the Supabase database.
+- Runs weekly as a GitHub Workflow to keep data fresh
+- Parses and normalizes calendars across different municipalities
+- Validates data before writing to Supabase
 
-**Implementation Details:**
+I went with `requests` + `BeautifulSoup`. Nothing fancy, but it gets the job done reliably. The scheduled execution means I never have to think about manual updates.
+Even if it was overkill, I wanted to try the DI `injector` package and, if you're interested in it, a small project like this could probably make you learn it the easy way.
 
-- Python with requests and BeautifulSoup for web scraping
-- Scheduled execution to ensure up-to-date data and avoid manual updates
-- Error handling and logging for reliable operation
-- Data validation to ensure accuracy before database updates
+### 3. Backend: Supabase
 
-### 3. Supabase: Backend and Database Infrastructure
+[Supabase](https://supabase.com) was a natural choice: it gave me a PostgreSQL database, edge functions, and auth without having to manage any infrastructure myself. Here's what it handles:
 
-[Supabase](https://supabase.com) serves as the backend platform, providing:
+- **Database:** tables for municipalities, waste types, collection schedules, and user preferences. Normalized schema with efficient indexes on date and municipality fields.
+- **Edge Functions:** notification scheduling, Telegram webhook handling, and API endpoints for the frontend.
+- **Security:** Row-level security for user data protection, plus database functions that are reused across edge functions and the frontend.
 
-**Database Schema:**
+Using Supabase let me focus on the actual product logic instead of setting up servers and databases.
 
-- Tables for municipalities, waste types, and collection schedules
-- User preferences and Telegram chat configurations
-- Efficient indexing for fast calendar queries
+### 4. Infrastructure: Terraform
 
-**Edge Functions:**
-
-- Notification scheduling logic
-- Telegram bot webhook handling
-- API endpoints for the frontend
-
-Using Supabase allowed me to focus on business logic rather than backend infrastructure management. The PostgreSQL database provides powerful querying capabilities, while edge functions handle the notification workflow.
-
-**Database Design Highlights:**
-
-- Normalized schema to avoid data duplication
-- Efficient indexes on date and municipality fields
-- Row-level security for user data protection
-- Database functions to reuse common queries between edge functions and frontend
-
-### 4. Infrastructure: Terraform for Repeatable Deployments
-
-All infrastructure is defined as code using [Terraform](https://www.terraform.io), making deployments reproducible and version-controlled. The infrastructure project manages:
-
-- Supabase project configuration
-- <strike>Render project configuration for frontend deployment </strike> no more since now frontend is deployed on GitHub Pages
-
-This approach ensures that the all the infrastructure is defined as code and can be easily replicated.
+All infrastructure is defined as code using [Terraform](https://www.terraform.io), making deployments reproducible and version-controlled. It manages the Supabase project configuration. I initially also had the frontend deployed on Render, but later migrated to GitHub Pages to keep things simpler and free.
 
 ## The Notification Flow
 
-Here's how the notification system works:
+This is the part I'm most proud of. It's what makes the app actually useful day-to-day:
 
 1. The scraper updates the database with waste collection schedules
 2. A Supabase edge function runs daily to check the next day's collections
-3. For each municipality with scheduled collections, the function queries users who have configured Telegram notifications
-4. The function sends personalized messages via the Telegram Bot API
-5. Users receive notifications the day before their collection day
+3. For each municipality with scheduled collections, it queries users who have configured Telegram notifications
+4. Personalized messages are sent via the Telegram Bot API
+5. Users get a reminder the day before their collection day
 
-This architecture ensures timely notifications without requiring users to actively check the calendar.
+No more forgotten bins on the curb.
 
-## Technical Challenges and Solutions
+## Why Open Source
 
-### Challenge 1: Data Consistency
+By open-sourcing the project, I hope to:
 
-Different municipalities present their data in varying formats. The scraper needed to normalize this information into a consistent schema.
+- Let other municipalities adapt the system for their own needs
+- Get contributions and feedback from the community
+- Provide a reference for developers building similar civic tech projects
 
-**Solution:** I implemented a flexible parsing layer that adapts to different source formats while validating the output against a strict schema before database insertion.
+The modular architecture means you can contribute to a single component without understanding the entire system.
 
-### Challenge 2: Reliable Notifications
+## What's Next
 
-Ensuring users receive notifications even if there are temporary failures in the system.
-
-**Solution:** The notification edge function includes retry logic and logs all delivery attempts. If the Telegram API is temporarily unavailable, the system retries with exponential backoff.
-
-### Challenge 3: User Privacy
-
-Handling user data, particularly Telegram chat IDs, required careful consideration of privacy.
-
-**Solution:** Supabase's row-level security ensures users can only access their own notification preferences. Telegram chat IDs are stored securely and never exposed through public APIs.
-
-## Open Source and Community
-
-By making trevisorifiuti.top open-source, I hope to:
-
-- Allow other municipalities to adapt the system for their needs
-- Receive contributions from the community
-- Provide a learning resource for developers interested in building similar civic tech projects
-
-The modular architecture means developers can contribute to individual components without needing to understand the entire system.
-
-## Future Roadmap
-
-Some features I'm considering for future development:
+Some features I'm considering:
 
 - Multiple notification channels (email, push notifications)
 - Statistics and insights on waste collection patterns
 
-## Getting Started
+## Try It Out
 
-If you're interested in running your own instance or contributing to the project:
+If you're interested in running your own instance or contributing:
 
-1. Clone the repository: `git clone https://github.com/mattiadevivo/trevisorifiuti.top.git`
+1. Clone the repo: `git clone https://github.com/mattiadevivo/trevisorifiuti.top.git`
 2. Check the README for setup instructions
-3. Each component has its own documentation in its respective directory
+3. Each component has its own docs in its directory
 4. Issues and pull requests are welcome!
 
-## Conclusion
-
-Building trevisorifiuti.top was fun, building a project that is actually useful and improve people's life (or at least mine) it's rewarding.
-
-The project demonstrates how modern web technologies like SolidJS, Supabase, and Terraform can be combined to create practical, user-focused applications. By open-sourcing the code, I hope others can learn from this approach or adapt it for their own communities.
-
-If you live in the Treviso area, try trevisorifiuti.top at [trevisorifiuti.top](https://trevisorifiuti.top). If you're a developer interested in any of the technologies used, check out the [GitHub repository](https://github.com/mattiadevivo/trevisorifiuti.top) and consider contributing!
-
----
-
-_Have questions or suggestions? Feel free to open an issue on GitHub or reach out directly. Let's make waste management a little easier, one notification at a time._
+Building trevisorifiuti.top was genuinely fun. There's something rewarding about solving a real problem you face every day, even if it's just remembering to take out the trash. If you live in the Treviso area, give it a try at [trevisorifiuti.top](https://trevisorifiuti.top). And if you're a developer curious about any of the tech involved, the [source code](https://github.com/mattiadevivo/trevisorifiuti.top) is all there.

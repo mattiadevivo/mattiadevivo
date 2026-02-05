@@ -88,8 +88,6 @@ Write tests that:
 - Have clear, descriptive names that explain what behavior they're verifying
 - Run fast enough that you can run them frequently
 
-<br>
-
 ## Making Testing Part of Your Development Flow
 
 The most effective approach I've found is to make testing an integral part of development, not an afterthought. This doesn't necessarily mean strict test-driven development (though that can work great), but rather developing with testing in mind from the start.

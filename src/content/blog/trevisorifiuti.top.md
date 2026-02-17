@@ -78,16 +78,6 @@ This is the part I'm most proud of. It's what makes the app actually useful day-
 
 No more forgotten bins on the curb.
 
-## Why Open Source
-
-By open-sourcing the project, I hope to:
-
-- Let other municipalities adapt the system for their own needs
-- Get contributions and feedback from the community
-- Provide a reference for developers building similar civic tech projects
-
-The modular architecture means you can contribute to a single component without understanding the entire system.
-
 ## What's Next
 
 Some features I'm considering:
